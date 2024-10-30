@@ -1,0 +1,76 @@
+<div id="preloader">
+<div class="terminal-loader">
+  <div class="terminal-header">
+    <div class="terminal-title">Status</div>
+    <div class="terminal-controls">
+      <div class="control close"></div>
+      <div class="control minimize"></div>
+      <div class="control maximize"></div>
+    </div>
+  </div>
+  <div class="text">Loading...</div>
+</div>
+</div>
+
+<mat-toolbar color="primary">
+  <mat-icon>menu</mat-icon>
+  <button mat-button [matMenuTriggerFor]="menuUsuario">Usuarios</button>
+  <button mat-button [matMenuTriggerFor]="menuTipoComida">Tipos Comida</button>
+  <button mat-button [matMenuTriggerFor]="menuDieta">Dietas</button>
+  <button mat-button [matMenuTriggerFor]="menuControl">Control</button>
+  <button mat-button [matMenuTriggerFor]="menuRoles">Roles</button>
+  <button mat-button [matMenuTriggerFor]="menuRecetas">Recetas</button>
+  <button mat-button [matMenuTriggerFor]="menuAlimentos">Alimentos</button>
+  <button mat-button [matMenuTriggerFor]="menuComidas">Comidas</button>
+  <button mat-button [mat-menu-trigger-for]="menuConsultas">Consulta</button>
+  <button mat-button [mat-menu-trigger-for]="menuRespuesta">Respuesta</button>
+  <button mat-button [matMenuTriggerFor]="menuObjetivos">Objetivos</button>
+
+</mat-toolbar>
+
+<mat-menu #menuUsuario="matMenu">
+  <button mat-menu-item routerLink="/usuarios">Listar</button>
+</mat-menu>
+
+<mat-menu #menuTipoComida="matMenu">
+  <button mat-menu-item routerLink="/tipos-comida">Listar</button>
+</mat-menu>
+
+<mat-menu #menuDieta="matMenu">
+  <button mat-menu-item routerLink="/dietas">Listar</button>
+</mat-menu>
+
+<mat-menu #menuControl="matMenu"> 
+  <button mat-menu-item routerLink="/control">Listar</button>
+</mat-menu>
+
+<mat-menu #menuRoles="matMenu"> 
+  <button mat-menu-item routerLink="/roles">Listar</button>
+</mat-menu>
+
+<mat-menu #menuRecetas="matMenu"> 
+  <button mat-menu-item routerLink="/recetas">Listar</button>
+</mat-menu>
+
+<mat-menu #menuAlimentos="matMenu"> 
+  <button mat-menu-item routerLink="/alimentos">Listar</button>
+</mat-menu>
+
+<mat-menu #menuComidas="matMenu"> 
+  <button mat-menu-item routerLink="/comidas">Listar</button>
+</mat-menu>
+
+<mat-menu #menuConsultas="matMenu"> 
+  <button mat-menu-item routerLink="/consulta">Listar</button>
+</mat-menu>
+
+<mat-menu #menuRespuesta="matMenu"> 
+  <button mat-menu-item routerLink="/respuesta">Listar</button>
+</mat-menu>
+
+<mat-menu #menuObjetivos="matMenu"> 
+  <button mat-menu-item routerLink="/objetivos">Listar</button>
+</mat-menu>
+
+<router-outlet></router-outlet>
+
