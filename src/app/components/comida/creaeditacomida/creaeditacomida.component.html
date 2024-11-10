@@ -1,0 +1,72 @@
+<div class="container" style="text-align: center">
+  <div class="container-title">
+    <p class="title">{{ edicion ? 'Actualizar Comida' : 'Registrar Comida' }}</p>
+  </div>
+    <div>
+      <form [formGroup]="form" (ngSubmit)="insertar()">
+        <mat-form-field appearance="fill">
+          <mat-label>Nombre</mat-label>
+          <input matInput formControlName="fnombre" required />
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="fill">
+          <mat-label>Calorías</mat-label>
+          <input matInput type="number" formControlName="fcalorias" required />
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="fill">
+          <mat-label>Proteínas</mat-label>
+          <input matInput type="number" formControlName="fproteinas" required />
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="fill">
+          <mat-label>Carbohidratos</mat-label>
+          <input matInput type="number" formControlName="fcarbohidratos" required />
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="fill">
+          <mat-label>Grasas</mat-label>
+          <input matInput type="number" formControlName="fgrasas" required />
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="fill">
+          <mat-label>Descripción</mat-label>
+          <input matInput formControlName="fdescripcion" required />
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="fill">
+          <mat-label>Favorito</mat-label>
+          <mat-select formControlName="fcomiFavo" required>
+            <mat-option [value]="true">Sí</mat-option>
+            <mat-option [value]="false">No</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="fill">
+          <mat-label>Tipo de comida</mat-label>
+          <mat-select  formControlName="ftipoComida">
+            @for (food of listaTipoComida; track food) {
+            <mat-option [value]="food.idTipComi">{{ food.descripcion }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="fill">
+          <mat-label>Usuario</mat-label>
+          <mat-select  formControlName="fusuario">
+            @for (food of listaUsuarios; track food) {
+            <mat-option [value]="food.idUsuario">{{ food.nombre }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <br />
+        <div>
+          <button mat-flat-button color="primary" class="custom-button">
+            {{ edicion ? 'Actualizar' : 'Registrar' }}
+          </button>
+          <button *ngIf="edicion" mat-flat-button color="warn" class="custom-button2" (click)="cancelar()">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

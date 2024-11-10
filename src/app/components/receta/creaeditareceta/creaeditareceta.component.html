@@ -1,0 +1,50 @@
+<div class="container" style="text-align: center">
+    <div class="container-title">
+        <p class="title">{{ edicion ? 'Actualizar Receta' : 'Registrar Receta' }}</p>
+      </div>
+    <div>
+      <form [formGroup]="form" (ngSubmit)="insertar()">
+        
+        <!-- Nombre -->
+        <mat-form-field appearance="fill">
+          <mat-label>Nombre</mat-label>
+          <input matInput formControlName="fnombre" required />
+        </mat-form-field>
+        <br />
+  
+        <!-- Descripción -->
+        <mat-form-field appearance="fill">
+          <mat-label>Descripción</mat-label>
+          <input matInput formControlName="fdescripcion" required />
+        </mat-form-field>
+        <br />
+  
+        <!-- Instrucciones -->
+        <mat-form-field appearance="fill">
+          <mat-label>Instrucciones</mat-label>
+          <input matInput formControlName="finstrucciones" required />
+        </mat-form-field>
+        <br />
+  
+        <!-- Comida -->
+        <mat-form-field appearance="fill">
+            <mat-label>Comidas</mat-label>
+            <mat-select  formControlName="fcomida">
+              @for (food of listaComida; track food) {
+              <mat-option [value]="food.idComida">{{ food.nombre }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        <br />
+        
+        <div>
+          <!-- Botones -->
+          <button mat-flat-button color="primary" class="custom-button">
+            {{ edicion ? 'Actualizar' : 'Registrar' }}
+          </button>          
+          <button *ngIf="edicion" mat-flat-button color="warn" class="custom-button2" (click)="cancelar()">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

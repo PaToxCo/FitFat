@@ -1,0 +1,103 @@
+<div id="preloader">
+  <div class="terminal-loader">
+    <div class="terminal-header">
+      <div class="terminal-title">Status</div>
+      <div class="terminal-controls">
+        <div class="control close"></div>
+        <div class="control minimize"></div>
+        <div class="control maximize"></div>
+      </div>
+    </div>
+    <div class="text">Loading...</div>
+  </div>
+</div>
+
+<mat-toolbar color="primary">
+  <img src="assets/img/logofitfat.png" alt="Logo FitFat" class="logo">
+    <button mat-button [matMenuTriggerFor]="menuUsuario">
+    <fa-icon [icon]="faUser" class="icon-spacing"></fa-icon> Usuarios
+  </button>
+    <button mat-button [matMenuTriggerFor]="menuTipoComida"><fa-icon [icon]="faBowlFood"
+      class="icon-spacing"></fa-icon>Tipos Comida</button>
+  <button mat-button [matMenuTriggerFor]="menuDieta">
+    <fa-icon [icon]="faEgg" class="icon-spacing"></fa-icon> Dietas
+  </button>
+  <button mat-button [matMenuTriggerFor]="menuControl">
+    <fa-icon [icon]="faDumbbell" class="icon-spacing"></fa-icon> Control
+  </button>
+  <button mat-button [matMenuTriggerFor]="menuRoles">
+    <fa-icon [icon]="faUser" class="icon-spacing"></fa-icon> Roles
+  </button>
+  <button mat-button [matMenuTriggerFor]="menuRecetas">
+    <fa-icon [icon]="faUtensils" class="icon-spacing"></fa-icon> Recetas
+  </button>
+  <button mat-button [matMenuTriggerFor]="menuAlimentos">
+    <fa-icon [icon]="faCarrot" class="icon-spacing"></fa-icon> Alimentos
+  </button>
+  <button mat-button [matMenuTriggerFor]="menuComidas">
+    <fa-icon [icon]="faBacon" class="icon-spacing"></fa-icon> Comidas
+  </button>
+  <button mat-button [matMenuTriggerFor]="menuConsultas">
+    <fa-icon [icon]="faQuestion" class="icon-spacing"></fa-icon> Consulta
+  </button>
+      <button mat-button [matMenuTriggerFor]="menuRespuesta">
+      <fa-icon [icon]="faComment" class="icon-spacing"></fa-icon> Respuesta
+    </button>
+    <button mat-button [matMenuTriggerFor]="menuObjetivos">
+      <fa-icon [icon]="faMedal" class="icon-spacing"></fa-icon> Objetivos
+    </button>    
+</mat-toolbar>
+
+<mat-menu #menuUsuario="matMenu">
+  <button mat-menu-item routerLink="/usuarios">Listar</button>
+  <button mat-menu-item routerLink="/usuarios/nuevo">Nuevo</button>
+</mat-menu>
+
+<mat-menu #menuTipoComida="matMenu">
+  <button mat-menu-item routerLink="/tipos-comida">Listar</button>
+  <button mat-menu-item routerLink="/tipos-comida/nuevo">Nuevo</button>
+</mat-menu>
+
+<mat-menu #menuDieta="matMenu">
+  <button mat-menu-item routerLink="/dietas">Listar</button>
+  <button mat-menu-item routerLink="/dietas/nuevo">Nuevo</button>
+</mat-menu>
+
+<mat-menu #menuControl="matMenu">
+  <button mat-menu-item routerLink="/control">Listar</button>
+  <button mat-menu-item routerLink="/control/nuevo">Nuevo</button>
+</mat-menu>
+
+<mat-menu #menuRoles="matMenu">
+  <button mat-menu-item routerLink="/roles">Listar</button>
+</mat-menu>
+
+<mat-menu #menuRecetas="matMenu">
+  <button mat-menu-item routerLink="/recetas">Listar</button>
+  <button mat-menu-item routerLink="/recetas/nuevo">Nuevo</button>
+</mat-menu>
+
+<mat-menu #menuAlimentos="matMenu">
+  <button mat-menu-item routerLink="/alimentos">Listar</button>
+  <button mat-menu-item routerLink="/alimentos/nuevo">Nuevo</button>
+</mat-menu>
+
+<mat-menu #menuComidas="matMenu">
+  <button mat-menu-item routerLink="/comidas">Listar</button>
+  <button mat-menu-item routerLink="/comidas/nuevo">Nuevo</button>
+</mat-menu>
+
+<mat-menu #menuConsultas="matMenu">
+  <button mat-menu-item routerLink="/consulta">Listar</button>
+</mat-menu>
+
+<mat-menu #menuRespuesta="matMenu">
+  <button mat-menu-item routerLink="/respuesta">Listar</button>
+</mat-menu>
+
+<mat-menu #menuObjetivos="matMenu">
+  <button mat-menu-item routerLink="/objetivos">Listar</button>
+  <button mat-menu-item routerLink="/objetivos/nuevo">Nuevo</button>
+</mat-menu>
+
+<router-outlet></router-outlet>

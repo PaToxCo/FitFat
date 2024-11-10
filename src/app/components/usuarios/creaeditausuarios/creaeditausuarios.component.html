@@ -1,0 +1,64 @@
+<div class="container" style="text-align: center">
+    <div class="container-title">
+        <p class="title">{{ edicion ? 'Actualizar Usuario' : 'Registrar Usuario' }}</p>
+      </div>
+    <div>
+        <form [formGroup]="form" (ngSubmit)="insertar()">
+            <mat-form-field class="example-full-width">
+                <mat-label>Correo</mat-label>
+                <input matInput placeholder="ejemplo@correo.com" formControlName="fcorreo">
+            </mat-form-field>
+            <br />
+
+            <mat-form-field>
+                <mat-label>Contraseña</mat-label>
+                <input matInput type="password" placeholder="********" formControlName="fcontrasena">
+            </mat-form-field>
+            <br />
+
+            <mat-form-field>
+                <mat-label>Repetir Contraseña</mat-label>
+                <input matInput type="password" placeholder="********" formControlName="fcontrasena2">
+            </mat-form-field>
+            <br />
+
+            <mat-form-field>
+                <mat-label>Nombre</mat-label>
+                <input matInput placeholder="Nombre" formControlName="fnombre">
+            </mat-form-field>
+            <br />
+
+            <mat-form-field>
+                <mat-label>Apellidos</mat-label>
+                <input matInput placeholder="Apellidos" formControlName="fapellidos">
+            </mat-form-field>
+            <br />
+
+            <mat-form-field>
+                <mat-label>Usuario</mat-label>
+                <input matInput placeholder="Usuario" formControlName="fusuario">
+            </mat-form-field>
+            <br />
+
+            <mat-form-field>
+                <mat-label>Celular</mat-label>
+                <input matInput placeholder="Número de celular" formControlName="fcelular">
+            </mat-form-field>
+            <br />
+
+            <mat-form-field>
+                <mat-label>Dirección</mat-label>
+                <input matInput placeholder="Dirección" formControlName="fdireccion">
+            </mat-form-field>
+            <br />
+
+            <div>
+                <!-- Botones -->
+                <button mat-flat-button color="primary" class="custom-button">
+                  {{ edicion ? 'Actualizar' : 'Registrar' }}
+                </button>          
+                <button *ngIf="edicion" mat-flat-button color="warn" class="custom-button2" (click)="cancelar()">Cancelar</button>
+              </div>
+        </form>
+    </div>
+</div>
