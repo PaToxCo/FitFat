@@ -6,17 +6,19 @@ import { RolService } from '../../../services/rol.service';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatInput, MatInputModule } from '@angular/material/input';
+import { MatIcon } from '@angular/material/icon';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-listarrol',
   standalone: true,
-  imports: [MatTableModule, MatPaginatorModule, MatSortModule, MatInputModule, MatInput],
+  imports: [MatTableModule, MatPaginatorModule, MatSortModule, MatInputModule, MatInput, MatIcon, RouterLink],
   templateUrl: './listarrol.component.html',
   styleUrls: ['./listarrol.component.css'],
 })
 export class ListarrolComponent implements OnInit {
   datasource: MatTableDataSource<Rol> = new MatTableDataSource();
-  displayedColumns: string[] = ['c1', 'c2', 'c3'];
+  displayedColumns: string[] = ['c1', 'c2', 'c3','accion01','accion02'];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -26,6 +28,13 @@ export class ListarrolComponent implements OnInit {
   ngOnInit(): void {
     this.rS.list().subscribe((data) => {
       this.datasource = new MatTableDataSource(data);
+    });
+  }
+  eliminar(id: number) {
+    this.rS.delete(id).subscribe((data) => {
+      this.rS.list().subscribe((data) => {
+        this.rS.setList(data);
+      });
     });
   }
 

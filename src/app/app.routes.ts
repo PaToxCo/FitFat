@@ -22,6 +22,7 @@ import { ReportesComponent } from './components/reportes/reportes.component';
 import { SumacaloriasusuarioComponent } from './components/reportes/comida/sumacaloriasusuario/sumacaloriasusuario.component';
 import { ContarusuariosporrolComponent } from './components/reportes/usuarios/contarusuariosporrol/contarusuariosporrol.component';
 import { ContarusuariosactivosinactivosComponent } from './components/reportes/usuarios/contarusuariosactivosinactivos/contarusuariosactivosinactivos.component';
+import { CreaeditarolComponent } from './components/rol/creaeditarol/creaeditarol.component';
 
 export const routes: Routes = [
     {
@@ -58,7 +59,15 @@ export const routes: Routes = [
         ]
     },
     {
-        path: 'roles', component: RolComponent
+        path: 'roles', component: RolComponent,
+        children:[
+            {
+                path:'nuevo', component: CreaeditarolComponent,
+            },
+            {
+                path: 'ediciones/:id', component: CreaeditarolComponent,
+            },
+        ]
     },
     {
         path: 'control', component: ControlComponent,
