@@ -18,6 +18,10 @@ import { CreaeditacontrolComponent } from './components/control/creaeditacontrol
 import { CreaeditarecetaComponent } from './components/receta/creaeditareceta/creaeditareceta.component';
 import { CreaeditaalimentosComponent } from './components/alimentos/creaeditaalimentos/creaeditaalimentos.component';
 import { CreaeditaobjetivosComponent } from './components/objetivos/creaeditaobjetivos/creaeditaobjetivos.component';
+import { ReportesComponent } from './components/reportes/reportes.component';
+import { SumacaloriasusuarioComponent } from './components/reportes/comida/sumacaloriasusuario/sumacaloriasusuario.component';
+import { ContarusuariosporrolComponent } from './components/reportes/usuarios/contarusuariosporrol/contarusuariosporrol.component';
+import { ContarusuariosactivosinactivosComponent } from './components/reportes/usuarios/contarusuariosactivosinactivos/contarusuariosactivosinactivos.component';
 
 export const routes: Routes = [
     {
@@ -117,4 +121,18 @@ export const routes: Routes = [
             },
         ]
     },
+    {
+        path:'reportes',component:ReportesComponent,
+        children:[
+          {
+            path:'comidafavorita',component:SumacaloriasusuarioComponent,
+          },
+          {
+            path:'contar-usuarios',component:ContarusuariosactivosinactivosComponent,
+          },
+          {
+            path:'usuarios-por-rol',component:ContarusuariosporrolComponent,
+          }
+        ]
+      },
 ];

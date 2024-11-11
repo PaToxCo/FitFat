@@ -10,8 +10,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatInputModule } from '@angular/material/input';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faBowlFood, faEgg, faDumbbell, faUser, faUtensils, faCarrot, faBacon, faQuestion, faComment, faMedal } from '@fortawesome/free-solid-svg-icons';
-
+import { faBowlFood, faEgg, faDumbbell, faUser, faUtensils, faCarrot, faBacon, faQuestion, faComment, faMedal, faCode } from '@fortawesome/free-solid-svg-icons';
+import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -31,6 +31,18 @@ import { faBowlFood, faEgg, faDumbbell, faUser, faUtensils, faCarrot, faBacon, f
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
+  animations: [
+    trigger('listAnimation', [
+      transition('* => *', [
+        query('.animated-button.animate', [
+          style({ opacity: 0, transform: 'translateY(-20px)' }),
+          stagger(100, [
+            animate('500ms ease-out', style({ opacity: 1, transform: 'translateY(0)' }))
+          ])
+        ], { optional: true })
+      ])
+    ])
+  ]
 })
 export class AppComponent {
   title = 'Fitfat';
@@ -44,4 +56,5 @@ export class AppComponent {
   faQuestion = faQuestion;
   faComment = faComment;
   faMedal = faMedal;
+  faCode = faCode;
 }

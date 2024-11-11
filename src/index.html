@@ -17,13 +17,17 @@
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const preloader = document.getElementById("preloader");
-
+  
       setTimeout(() => {
         preloader.style.opacity = 0;
         preloader.style.visibility = 'hidden';
+        document.querySelectorAll('.animated-button').forEach((button, index) => {
+          setTimeout(() => {
+            button.classList.add('animate');
+          }, 400 + index * 100);
+        });
       }, 4000);
     });
-
   </script>
 </body>
 

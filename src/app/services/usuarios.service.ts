@@ -2,7 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Usuarios } from '../models/usuarios';
 import { environment } from '../../environments/environment';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { UsuariosPorRolDTO } from '../models/dtos/UsuariosPorRolDTO';
+import { ContarUsuariosActivosInactivosDTO } from '../models/dtos/ContarUsuariosActivosInactivosDTO';
 
 const base_url = environment.base;
 
@@ -37,4 +39,12 @@ export class UsuariosService {
   update(u:Usuarios){
     return this.http.put(this.url,u);
   }
+  obtenerUsuariosPorRol(): Observable<UsuariosPorRolDTO[]> {
+    return this.http.get<UsuariosPorRolDTO[]>(`${this.url}/usuarios-por-rol`);
+  }
+
+  contarUsuariosActivosInactivos(): Observable<ContarUsuariosActivosInactivosDTO[]> {
+    return this.http.get<ContarUsuariosActivosInactivosDTO[]>(`${this.url}/contar-usuarios`
+    );
+}
 }

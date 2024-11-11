@@ -3,8 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Comida } from '../models/comida';
-import { Tipo_Comida } from '../models/tipo_comida';
-import { Usuarios } from '../models/usuarios';
+import { SumaCaloriasPorUsuarioDTO } from '../models/dtos/SumaCaloriasPorUsuarioDTO';
+import { ComidaFavoritaPorTipoDTO } from '../models/dtos/ComidaFavoritaPorTipoDTO';
 
 const base_url = environment.base;
 
@@ -43,4 +43,10 @@ export class ComidaService {
   update(c: Comida) {
     return this.http.put(this.url,c);
   }
-}
+  obtenerSuma(): Observable<SumaCaloriasPorUsuarioDTO[]> {
+    return this.http.get<SumaCaloriasPorUsuarioDTO[]>(`${this.url}/suma-calorias-usuario`);
+  }
+  cantidadComidasFavoritasPorTipo(): Observable<ComidaFavoritaPorTipoDTO[]> {
+    return this.http.get<ComidaFavoritaPorTipoDTO[]>(`${this.url}/cantidad-favoritas-tipo`);
+  }
+  }

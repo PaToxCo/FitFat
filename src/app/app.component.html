@@ -12,40 +12,44 @@
   </div>
 </div>
 
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" @listAnimation>
   <img src="assets/img/logofitfat.png" alt="Logo FitFat" class="logo">
-    <button mat-button [matMenuTriggerFor]="menuUsuario">
+  <button mat-button [matMenuTriggerFor]="menuUsuario" class="animated-button">
     <fa-icon [icon]="faUser" class="icon-spacing"></fa-icon> Usuarios
   </button>
-    <button mat-button [matMenuTriggerFor]="menuTipoComida"><fa-icon [icon]="faBowlFood"
-      class="icon-spacing"></fa-icon>Tipos Comida</button>
-  <button mat-button [matMenuTriggerFor]="menuDieta">
+  <button mat-button [matMenuTriggerFor]="menuTipoComida" class="animated-button">
+    <fa-icon [icon]="faBowlFood" class="icon-spacing"></fa-icon> Tipos Comida
+  </button>
+  <button mat-button [matMenuTriggerFor]="menuDieta" class="animated-button">
     <fa-icon [icon]="faEgg" class="icon-spacing"></fa-icon> Dietas
   </button>
-  <button mat-button [matMenuTriggerFor]="menuControl">
+  <button mat-button [matMenuTriggerFor]="menuControl" class="animated-button">
     <fa-icon [icon]="faDumbbell" class="icon-spacing"></fa-icon> Control
   </button>
-  <button mat-button [matMenuTriggerFor]="menuRoles">
+  <button mat-button [matMenuTriggerFor]="menuRoles" class="animated-button">
     <fa-icon [icon]="faUser" class="icon-spacing"></fa-icon> Roles
   </button>
-  <button mat-button [matMenuTriggerFor]="menuRecetas">
+  <button mat-button [matMenuTriggerFor]="menuRecetas" class="animated-button">
     <fa-icon [icon]="faUtensils" class="icon-spacing"></fa-icon> Recetas
   </button>
-  <button mat-button [matMenuTriggerFor]="menuAlimentos">
+  <button mat-button [matMenuTriggerFor]="menuAlimentos" class="animated-button">
     <fa-icon [icon]="faCarrot" class="icon-spacing"></fa-icon> Alimentos
   </button>
-  <button mat-button [matMenuTriggerFor]="menuComidas">
+  <button mat-button [matMenuTriggerFor]="menuComidas" class="animated-button">
     <fa-icon [icon]="faBacon" class="icon-spacing"></fa-icon> Comidas
   </button>
-  <button mat-button [matMenuTriggerFor]="menuConsultas">
+  <button mat-button [matMenuTriggerFor]="menuConsultas" class="animated-button">
     <fa-icon [icon]="faQuestion" class="icon-spacing"></fa-icon> Consulta
   </button>
-      <button mat-button [matMenuTriggerFor]="menuRespuesta">
-      <fa-icon [icon]="faComment" class="icon-spacing"></fa-icon> Respuesta
-    </button>
-    <button mat-button [matMenuTriggerFor]="menuObjetivos">
-      <fa-icon [icon]="faMedal" class="icon-spacing"></fa-icon> Objetivos
-    </button>    
+  <button mat-button [matMenuTriggerFor]="menuRespuesta" class="animated-button">
+    <fa-icon [icon]="faComment" class="icon-spacing"></fa-icon> Respuesta
+  </button>
+  <button mat-button [matMenuTriggerFor]="menuObjetivos" class="animated-button">
+    <fa-icon [icon]="faMedal" class="icon-spacing"></fa-icon> Objetivos
+  </button>
+  <button mat-button [matMenuTriggerFor]="menuReportes" class="animated-button">
+    <fa-icon [icon]="faCode" class="icon-spacing"></fa-icon> Reportes
+  </button>
 </mat-toolbar>
 
 <mat-menu #menuUsuario="matMenu">
@@ -100,4 +104,22 @@
   <button mat-menu-item routerLink="/objetivos/nuevo">Nuevo</button>
 </mat-menu>
 
+<mat-menu #menuReportes="matMenu">
+  <button mat-menu-item routerLink="/reportes" class="custom-menu-item">
+    <mat-icon>pie_chart</mat-icon>Reporte Cantidad
+  </button>
+  <button mat-menu-item routerLink="/reportes/comidafavorita" class="custom-menu-item">
+    <mat-icon>bar_chart</mat-icon>Reporte Comida Favorita
+  </button>
+  <button mat-menu-item routerLink="/reportes/contar-usuarios" class="custom-menu-item">
+    <mat-icon>bar_chart</mat-icon>Reporte usuariosActivosInactivos
+  </button>
+  <button mat-menu-item routerLink="/reportes/usuarios-por-rol" class="custom-menu-item">
+    <mat-icon>bar_chart</mat-icon>Reporte usuariosPorRol
+  </button>
+</mat-menu>
+
+
 <router-outlet></router-outlet>
+
+

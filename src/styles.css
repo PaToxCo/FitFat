@@ -163,6 +163,16 @@ mat-toolbar mat-icon {
   from { border-right-color: green; }
   to { border-right-color: transparent; }
 }
+.animated-button {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 500ms ease-out, transform 500ms ease-out;
+}
+
+.animated-button.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 /* title */
 .container-title {
@@ -214,5 +224,20 @@ mat-toolbar mat-icon {
     opacity: 0;
   }
 }
+/* REPORTES DAIKI */
+.chart-container {
+  width: 40%;
+  margin: 0 auto;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .chart-container {
+    width: 100%;
+    padding: 10px;
+  }
+}
+
 
   
