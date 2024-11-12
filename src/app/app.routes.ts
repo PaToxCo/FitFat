@@ -22,6 +22,15 @@ import { ReportesComponent } from './components/reportes/reportes.component';
 import { SumacaloriasusuarioComponent } from './components/reportes/comida/sumacaloriasusuario/sumacaloriasusuario.component';
 import { ContarusuariosporrolComponent } from './components/reportes/usuarios/contarusuariosporrol/contarusuariosporrol.component';
 import { ContarusuariosactivosinactivosComponent } from './components/reportes/usuarios/contarusuariosactivosinactivos/contarusuariosactivosinactivos.component';
+import { ContarporcategoriaComponent } from './components/reportes/tipo-comida/contarporcategoria/contarporcategoria.component';
+import { ObtenerFechasPorEstadoComponent } from './components/reportes/objetivos/obtenerfechasporestado/obtenerfechasporestado.component';
+import { ObtenerDuracionPorTipoDeObjetivoComponent } from './components/reportes/objetivos/obtenerduracionportipodeobjetivo/obtenerduracionportipodeobjetivo.component';
+import { SumadescripcionderecetaporcomidaComponent } from './components/reportes/receta/sumadescripcionderecetaporcomida/sumadescripcionderecetaporcomida.component';
+import { ContarrecetaporcomidaComponent } from './components/reportes/receta/contarrecetaporcomida/contarrecetaporcomida.component';
+import { ContarcontrolporgeneroComponent } from './components/reportes/control/contarcontrolporgenero/contarcontrolporgenero.component';
+import { ContarcontrolpordietaComponent } from './components/reportes/control/contarcontrolpordieta/contarcontrolpordieta.component';
+import { ContaralimentospordietaComponent } from './components/reportes/alimentos/contaralimentospordieta/contaralimentospordieta.component';
+import { SumartotalcaloriasdedietaComponent } from './components/reportes/alimentos/sumartotalcaloriasdedieta/sumartotalcaloriasdedieta.component';
 
 export const routes: Routes = [
     {
@@ -132,7 +141,35 @@ export const routes: Routes = [
           },
           {
             path:'usuarios-por-rol',component:ContarusuariosporrolComponent,
+          },
+          {
+            path:'tipo-de-comida',component:ContarporcategoriaComponent,
+          },
+          {
+            path:'obtener-fecha-por-estado',component:ObtenerFechasPorEstadoComponent,
+          },
+          {
+            path:'duracion-de-fecha-por-tipo',component:ObtenerDuracionPorTipoDeObjetivoComponent,
+          },
+          {
+            path:'suma-descrip-de-receta-de-comida',component:SumadescripcionderecetaporcomidaComponent,
+          },
+          {
+            path:'contar-recetas-por-comida',component:ContarrecetaporcomidaComponent,
+          },
+          {
+            path:'contar-control-por-genero',component:ContarcontrolporgeneroComponent,
+          },
+          {
+            path:'contar-control-por-dieta',component:ContarcontrolpordietaComponent,
+          },
+          {
+            path:'contar-alimentos-por-dieta',component:ContaralimentospordietaComponent,
+          },
+          {
+            path:'sumar-total-calorias-por-dieta',component:SumartotalcaloriasdedietaComponent,
           }
+          
         ]
       },
 ];

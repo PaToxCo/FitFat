@@ -2,19 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { ChartDataset, ChartOptions, ChartType } from 'chart.js';
 import { NgChartsModule } from 'ng2-charts';
 import { Chart, registerables } from 'chart.js';
-import { UsuariosService } from '../../../../services/usuarios.service';
-
+import { AlimentosService } from '../../../../services/alimentos.service';
 
 Chart.register(...registerables);
 
 @Component({
-  selector: 'app-contarusuariosactivosinactivos',
+  selector: 'app-contaralimentospordieta',
   standalone: true,
   imports: [NgChartsModule],
-  templateUrl: './contarusuariosactivosinactivos.component.html',
-  styleUrls: ['./contarusuariosactivosinactivos.component.css'],
+  templateUrl: './contaralimentospordieta.component.html',
+  styleUrls: ['./contaralimentospordieta.component.css'],
 })
-export class ContarusuariosactivosinactivosComponent implements OnInit {
+export class ContaralimentospordietaComponent implements OnInit {
   barChartOptions: ChartOptions = {
     responsive: true,
   };
@@ -23,15 +22,15 @@ export class ContarusuariosactivosinactivosComponent implements OnInit {
   barChartLegend = true;
   barChartData: ChartDataset[] = [];
 
-  constructor(private uS: UsuariosService) {}
+  constructor(private aS: AlimentosService) {}
 
   ngOnInit(): void {
-    this.uS.contarUsuariosActivosInactivos().subscribe((data) => {
-      this.barChartLabels = data.map((item) => item.estadoUsuario);
+    this.aS.totalAlimentos().subscribe((data) => {
+      this.barChartLabels = data.map((item) => item.dieta);
       this.barChartData = [
         {
-          data: data.map((item) => item.cantidad),
-          label: 'Usuarios activos/inactivos',
+          data: data.map((item) => item.totalAlimentos),
+          label: 'Total de Alimentos por Dieta',
           backgroundColor: ['#8a47eb', '#a163f8', '#b87ff5', '#cea2ff', '#e0c1ff'],
           borderColor: '#8a47eb',
           borderWidth: 1,

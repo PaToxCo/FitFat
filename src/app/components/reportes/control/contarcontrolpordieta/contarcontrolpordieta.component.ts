@@ -1,19 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartDataset, ChartOptions, ChartType } from 'chart.js';
+import { ControlService } from '../../../../services/control.service';
 import { NgChartsModule } from 'ng2-charts';
-import { Chart, registerables } from 'chart.js';
-import { UsuariosService } from '../../../../services/usuarios.service';
-
-Chart.register(...registerables);
 
 @Component({
-  selector: 'app-contarusuariosporrol',
+  selector: 'app-contarcontrolpordieta',
   standalone: true,
   imports: [NgChartsModule],
-  templateUrl: './contarusuariosporrol.component.html',
-  styleUrls: ['./contarusuariosporrol.component.css'],
+  templateUrl: './contarcontrolpordieta.component.html',
+  styleUrls: ['./contarcontrolpordieta.component.css']
 })
-export class ContarusuariosporrolComponent implements OnInit {
+export class ContarcontrolpordietaComponent implements OnInit {
   barChartOptions: ChartOptions = {
     responsive: true,
   };
@@ -22,15 +19,15 @@ export class ContarusuariosporrolComponent implements OnInit {
   barChartLegend = true;
   barChartData: ChartDataset[] = [];
 
-  constructor(private uS: UsuariosService) {}
+  constructor(private cS: ControlService) {}
 
   ngOnInit(): void {
-    this.uS.obtenerUsuariosPorRol().subscribe((data) => {
-      this.barChartLabels = data.map((item) => item.nombreRol);
+    this.cS.getControlesPorDieta().subscribe((data) => {
+      this.barChartLabels = data.map((item) => `Dieta ${item.idDieta}`);
       this.barChartData = [
         {
-          data: data.map((item) => item.cantidadUsuarios),
-          label: 'Usuarios por rol',
+          data: data.map((item) => item.totalControles),
+          label: 'Controles por Dieta',
           backgroundColor: ['#8a47eb', '#a163f8', '#b87ff5', '#cea2ff', '#e0c1ff'],
           borderColor: '#8a47eb',
           borderWidth: 1,

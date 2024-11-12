@@ -2,19 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { ChartDataset, ChartOptions, ChartType } from 'chart.js';
 import { NgChartsModule } from 'ng2-charts';
 import { Chart, registerables } from 'chart.js';
-import { UsuariosService } from '../../../../services/usuarios.service';
-
+import { RecetaService } from '../../../../services/receta.service';
 
 Chart.register(...registerables);
 
 @Component({
-  selector: 'app-contarusuariosactivosinactivos',
+  selector: 'app-contarrecetaporcomida',
   standalone: true,
   imports: [NgChartsModule],
-  templateUrl: './contarusuariosactivosinactivos.component.html',
-  styleUrls: ['./contarusuariosactivosinactivos.component.css'],
+  templateUrl: './contarrecetaporcomida.component.html',
+  styleUrls: ['./contarrecetaporcomida.component.css'],
 })
-export class ContarusuariosactivosinactivosComponent implements OnInit {
+export class ContarrecetaporcomidaComponent implements OnInit {
   barChartOptions: ChartOptions = {
     responsive: true,
   };
@@ -23,15 +22,16 @@ export class ContarusuariosactivosinactivosComponent implements OnInit {
   barChartLegend = true;
   barChartData: ChartDataset[] = [];
 
-  constructor(private uS: UsuariosService) {}
+  constructor(private rS: RecetaService) {}
 
   ngOnInit(): void {
-    this.uS.contarUsuariosActivosInactivos().subscribe((data) => {
-      this.barChartLabels = data.map((item) => item.estadoUsuario);
+    this.rS.getRecetasCountByComida().subscribe((data) => {
+       console.log(data);
+      this.barChartLabels = data.map((item) => `Comida ${item.comidaId}`);
       this.barChartData = [
         {
-          data: data.map((item) => item.cantidad),
-          label: 'Usuarios activos/inactivos',
+          data: data.map((item) => item.totalRecetas),
+          label: 'Cantidad de recetas por comida',
           backgroundColor: ['#8a47eb', '#a163f8', '#b87ff5', '#cea2ff', '#e0c1ff'],
           borderColor: '#8a47eb',
           borderWidth: 1,
@@ -39,4 +39,5 @@ export class ContarusuariosactivosinactivosComponent implements OnInit {
       ];
     });
   }
+  
 }

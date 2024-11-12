@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Tipo_Comida } from '../models/tipo_comida';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { ContarTiposPorCategoriaDTO } from '../models/dtos/ContarTiposPorCategoriaDTO';
 const base_url = environment.base;
 @Injectable({
   providedIn: 'root'
@@ -33,4 +34,6 @@ export class TipoComidaService {
   update(tp:Tipo_Comida){
     return this.http.put(this.url,tp);
   }
+  contarTiposPorCategoria(): Observable<ContarTiposPorCategoriaDTO[]> {
+   return this.http.get<ContarTiposPorCategoriaDTO[]>(`${this.url}/contar-por-categoria`); }
 }
