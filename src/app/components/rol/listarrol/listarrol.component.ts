@@ -34,6 +34,7 @@ export class ListarrolComponent implements OnInit {
     this.rS.delete(id).subscribe((data) => {
       this.rS.list().subscribe((data) => {
         this.rS.setList(data);
+        
       });
     });
   }

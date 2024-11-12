@@ -3,7 +3,8 @@ import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Tipo_Comida } from '../models/tipo_comida';
 import { Dieta } from '../models/dieta';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { DietasPorUsuarioDTO } from '../models/dtos/DietasPorUsuarioDTO';
 const base_url = environment.base;
 @Injectable({
   providedIn: 'root'
@@ -33,5 +34,8 @@ export class DietaService {
   }
   update(r:Dieta){
     return this.http.put(this.url,r);
+  }
+  cantidadDietasporUsuario(): Observable<DietasPorUsuarioDTO[]> {
+    return this.http.get<DietasPorUsuarioDTO[]>(`${this.url}/quantitydiet`);
   }
 }

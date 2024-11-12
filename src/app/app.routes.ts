@@ -23,6 +23,7 @@ import { SumacaloriasusuarioComponent } from './components/reportes/comida/sumac
 import { ContarusuariosporrolComponent } from './components/reportes/usuarios/contarusuariosporrol/contarusuariosporrol.component';
 import { ContarusuariosactivosinactivosComponent } from './components/reportes/usuarios/contarusuariosactivosinactivos/contarusuariosactivosinactivos.component';
 import { CreaeditarolComponent } from './components/rol/creaeditarol/creaeditarol.component';
+import { CantidaddietaporusuarioComponent } from './components/reportes/dieta/cantidaddietaporusuario/cantidaddietaporusuario.component';
 
 export const routes: Routes = [
     {
@@ -141,7 +142,11 @@ export const routes: Routes = [
           },
           {
             path:'usuarios-por-rol',component:ContarusuariosporrolComponent,
+          },
+          {
+            path:'quantitydiet', component:CantidaddietaporusuarioComponent,
           }
+            
         ]
       },
 ];
