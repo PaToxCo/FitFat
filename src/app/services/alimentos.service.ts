@@ -2,7 +2,10 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Alimentos } from '../models/alimentos';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { CaloriasPorAlimentoDTO } from '../models/dtos/CaloriasPorAlimentoDTO';
+import { CarbohidratosPorAlimentosDTO } from '../models/dtos/CarbohidratosPorAlimentosDTO';
+import { GrasasPorAlimentosDTO } from '../models/dtos/GrasasPorAlimentoDTO';
 
 const base_url = environment.base;
 @Injectable({
@@ -34,5 +37,14 @@ export class AlimentosService {
   }
   update(s:Alimentos){
     return this.http.put(this.url,s);
+  }
+  caloriasporalimento(): Observable<CaloriasPorAlimentoDTO[]> {
+    return this.http.get<CaloriasPorAlimentoDTO[]>(`${this.url}/calorias`);
+  }
+  carbohidratosalimento(): Observable<CarbohidratosPorAlimentosDTO[]> {
+    return this.http.get<CarbohidratosPorAlimentosDTO[]>(`${this.url}/carbohidratos`);
+  }
+  grasasalimento(): Observable<GrasasPorAlimentosDTO[]> {
+    return this.http.get<GrasasPorAlimentosDTO[]>(`${this.url}/grasas`);
   }
 }

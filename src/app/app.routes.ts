@@ -24,6 +24,9 @@ import { ContarusuariosporrolComponent } from './components/reportes/usuarios/co
 import { ContarusuariosactivosinactivosComponent } from './components/reportes/usuarios/contarusuariosactivosinactivos/contarusuariosactivosinactivos.component';
 import { CreaeditarolComponent } from './components/rol/creaeditarol/creaeditarol.component';
 import { CantidaddietaporusuarioComponent } from './components/reportes/dieta/cantidaddietaporusuario/cantidaddietaporusuario.component';
+import { CaloriasporalimentoComponent } from './components/reportes/alimentos/caloriasporalimento/caloriasporalimento.component';
+import { CarbohidratosporalimentoComponent } from './components/reportes/alimentos/carbohidratosporalimento/carbohidratosporalimento.component';
+import { GrasasporalimentoComponent } from './components/reportes/alimentos/grasasporalimento/grasasporalimento.component';
 
 export const routes: Routes = [
     {
@@ -145,7 +148,16 @@ export const routes: Routes = [
           },
           {
             path:'quantitydiet', component:CantidaddietaporusuarioComponent,
-          }
+          },
+          {
+            path:'calorias', component:CaloriasporalimentoComponent,
+          },
+          {
+            path:'carbohidratos', component:CarbohidratosporalimentoComponent,
+          },
+          {
+            path:'grasas', component:GrasasporalimentoComponent,
+          },
             
         ]
       },
