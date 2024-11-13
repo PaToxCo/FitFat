@@ -7,11 +7,13 @@
             <mat-form-field class="example-full-width">
                 <mat-label>Nombre</mat-label>
                 <input matInput placeholder="Nombre de la dieta" formControlName="fnombre">
+                <mat-error *ngIf="form.get('fnombre')?.hasError('required')">El nombre es obligatorio</mat-error>
             </mat-form-field>
             <br />
             <mat-form-field>
                 <mat-label>Duración (en días)</mat-label>
                 <input matInput type="number" placeholder="Duración" formControlName="fduracion">
+                <mat-error *ngIf="form.get('fduracion')?.hasError('required')">La duracion es obligatoria</mat-error>
             </mat-form-field>
             <br />
             <mat-form-field>
@@ -21,6 +23,7 @@
                   <mat-option [value]="food.idUsuario">{{ food.nombre }}</mat-option>
                   }
                 </mat-select>
+                <mat-error *ngIf="form.get('fusuario')?.hasError('required')">Elija un usuario</mat-error>
               </mat-form-field>
             <br />
             <div>
