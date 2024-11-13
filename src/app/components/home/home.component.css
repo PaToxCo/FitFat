@@ -1,0 +1,25 @@
+.home-container {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    height: 80vh; /* Ocupa el 80% de la altura de la ventana */
+    overflow: hidden; /* Esconde cualquier desbordamiento */
+    position: relative;
+}
+
+.image-logo {
+    width: 600px; /* Ancho ajustado */
+    height: auto; /* Mantiene la proporción */
+}
+
+.text-angular {
+    position: absolute;
+    bottom: 20px; /* Distancia desde el fondo */
+    left: 50%;
+    transform: translateX(-50%); /* Centra horizontalmente el texto */
+    color: white;
+    text-align: center;
+    background-color: rgba(46, 37, 178, 0.5);
+    padding: 10px;
+    border-radius: 5px;
+}

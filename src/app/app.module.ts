@@ -1,4 +1,4 @@
-import { NgModule, provideZoneChangeDetection } from '@angular/core';
+import { importProvidersFrom, NgModule, provideZoneChangeDetection } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -8,6 +8,9 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { ContarusuariosactivosinactivosComponent } from './components/reportes/usuarios/contarusuariosactivosinactivos/contarusuariosactivosinactivos.component';
 import { ContarusuariosporrolComponent } from './components/reportes/usuarios/contarusuariosporrol/contarusuariosporrol.component';
+import { LoginService } from './services/login.service';
+import { JwtModule } from '@auth0/angular-jwt';
+import { tokenGetter } from './app.config';
 @NgModule({
     imports: [
       BrowserModule,
@@ -22,7 +25,34 @@ import { ContarusuariosporrolComponent } from './components/reportes/usuarios/co
       provideZoneChangeDetection({ eventCoalescing: true }),
       provideRouter(routes),
       provideClientHydration(),
-      provideHttpClient(withFetch())
+      provideHttpClient(withFetch()),
+      importProvidersFrom(
+        JwtModule.forRoot({
+          config: {
+            tokenGetter: tokenGetter,
+            allowedDomains: ['localhost:8080'],
+            disallowedRoutes: ['http://localhost:8080/login/forget'],
+          },
+        })
+      ),
     ],
   })
-export class AppModule { }
+export class AppModule {
+  role: string = '';
+  constructor(private loginService: LoginService) {}
+  cerrar() {
+    sessionStorage.clear();
+  }
+
+  verificar() {
+    this.role = this.loginService.showRole();
+    return this.loginService.verificar();
+  }
+  isDeveloper() {
+    return this.role === 'DEVELOPER';
+  }
+
+  isTester() {
+    return this.role === 'TESTER';
+  }
+ }

@@ -31,8 +31,20 @@ import { ContarcontrolporgeneroComponent } from './components/reportes/control/c
 import { ContarcontrolpordietaComponent } from './components/reportes/control/contarcontrolpordieta/contarcontrolpordieta.component';
 import { ContaralimentospordietaComponent } from './components/reportes/alimentos/contaralimentospordieta/contaralimentospordieta.component';
 import { SumartotalcaloriasdedietaComponent } from './components/reportes/alimentos/sumartotalcaloriasdedieta/sumartotalcaloriasdedieta.component';
+import { LoginComponent } from './components/login/login.component';
+import { seguridadGuard } from './guard/seguridad.guard';
+import { HomeComponent } from './components/home/home.component';
 
 export const routes: Routes = [
+    {
+        path: '',
+        redirectTo: 'login',
+        pathMatch: 'full',
+      },
+      {
+        path: 'login',
+        component: LoginComponent,
+      },
     {
         path: 'usuarios', component: UsuariosComponent,
         children:[
@@ -42,7 +54,8 @@ export const routes: Routes = [
             {
                 path: 'ediciones/:id', component: CreaeditausuariosComponent,
             },
-        ]
+        ],
+        canActivate: [seguridadGuard],
     },
     {
         path: 'tipos-comida', component: TiposComidaComponent,
@@ -53,7 +66,8 @@ export const routes: Routes = [
             {
                 path: 'ediciones/:id', component: CreaeditatipoComidasComponent,
             },
-        ]
+        ],
+        canActivate: [seguridadGuard],
     },
     {
         path: 'dietas', component: DietaComponent,
@@ -64,10 +78,12 @@ export const routes: Routes = [
             {
                 path: 'ediciones/:id', component: CreaeditadietaComponent,
             },
-        ]
+        ],
+        canActivate: [seguridadGuard],
     },
     {
-        path: 'roles', component: RolComponent
+        path: 'roles', component: RolComponent,
+        canActivate: [seguridadGuard],
     },
     {
         path: 'control', component: ControlComponent,
@@ -78,7 +94,8 @@ export const routes: Routes = [
             {
                 path: 'ediciones/:id', component: CreaeditacontrolComponent,
             },
-        ]
+        ],
+        canActivate: [seguridadGuard],
     },
     {
         path: 'recetas', component: RecetaComponent,
@@ -89,7 +106,8 @@ export const routes: Routes = [
             {
                 path: 'ediciones/:id', component: CreaeditarecetaComponent,
             },
-        ]
+        ],
+        canActivate: [seguridadGuard],
     },
     {
         path: 'alimentos', component: AlimentosComponent,
@@ -100,7 +118,8 @@ export const routes: Routes = [
             {
                 path: 'ediciones/:id', component: CreaeditaalimentosComponent,
             },
-        ]
+        ],
+        canActivate: [seguridadGuard],
     },
     {
         path: 'comidas', component: ComidaComponent,
@@ -111,13 +130,16 @@ export const routes: Routes = [
             {
                 path: 'ediciones/:id', component: CreaeditacomidaComponent,
             },
-        ]
+        ],
+        canActivate: [seguridadGuard],
     },
     {
-        path: 'consulta', component: ConsultaComponent
+        path: 'consulta', component: ConsultaComponent,
+        canActivate: [seguridadGuard],
     },
     {
-        path: 'respuesta', component: RespuestaComponent
+        path: 'respuesta', component: RespuestaComponent,
+        canActivate: [seguridadGuard],
     },
     {
         path: 'objetivos', component: ObjetivosComponent,
@@ -128,7 +150,8 @@ export const routes: Routes = [
             {
                 path: 'ediciones/:id', component: CreaeditaobjetivosComponent,
             },
-        ]
+        ],
+        canActivate: [seguridadGuard],
     },
     {
         path:'reportes',component:ReportesComponent,
@@ -170,6 +193,12 @@ export const routes: Routes = [
             path:'sumar-total-calorias-por-dieta',component:SumartotalcaloriasdedietaComponent,
           }
           
-        ]
+        ],
+        canActivate: [seguridadGuard],
+      },
+      {
+        path: 'homes',
+        component: HomeComponent,
+        canActivate: [seguridadGuard], 
       },
 ];

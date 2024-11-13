@@ -1,9 +1,13 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { JwtModule } from '@auth0/angular-jwt';
+export function tokenGetter() { 
+  return sessionStorage.getItem('token');
+}
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -11,6 +15,15 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideClientHydration(),
     provideHttpClient(withFetch()),
-    provideAnimations()
+    provideAnimations(),
+    importProvidersFrom(
+      JwtModule.forRoot({
+        config: {
+          tokenGetter: tokenGetter,
+          allowedDomains: ['localhost:8080'],
+          disallowedRoutes: ['http://localhost:8080/login/forget'],
+        },
+      })
+    ),
   ],
 };

@@ -12,6 +12,8 @@ import { MatInputModule } from '@angular/material/input';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faBowlFood, faEgg, faDumbbell, faUser, faUtensils, faCarrot, faBacon, faQuestion, faComment, faMedal, faCode } from '@fortawesome/free-solid-svg-icons';
 import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
+import { LoginService } from './services/login.service';
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -46,6 +48,53 @@ import { trigger, transition, style, animate, query, stagger } from '@angular/an
 })
 export class AppComponent {
   title = 'Fitfat';
+  role: string = '';
+
+  constructor(private loginService: LoginService) {}
+
+  showLoader() {
+    const preloader = document.getElementById('preloader');
+    if (preloader) {
+      preloader.style.opacity = '1';
+      preloader.style.visibility = 'visible';
+      setTimeout(() => {
+        preloader.style.opacity = '0';
+        preloader.style.visibility = 'hidden';
+        document.querySelectorAll('.animated-button').forEach((button, index) => {
+          setTimeout(() => {
+            button.classList.add('animate');
+          }, 400 + index * 100); 
+        });
+      }, 1000); 
+    }
+  }
+  hideLoader() {
+    const preloader = document.getElementById('preloader');
+    if (preloader) {
+      setTimeout(() => {
+        preloader.style.opacity = '0';
+        preloader.style.visibility = 'hidden';
+      }, 1000); 
+    }
+  }
+
+  cerrar() {
+    sessionStorage.clear();
+  }
+
+  verificar() {
+    this.role = this.loginService.showRole();
+    return this.loginService.verificar();
+  }
+
+  isUser() {
+    return this.role === 'USER';
+  }
+
+  isAdmin() {
+    return this.role === 'ADMIN';
+  }
+
   faBowlFood = faBowlFood;
   faEgg = faEgg;
   faDumbbell = faDumbbell;
