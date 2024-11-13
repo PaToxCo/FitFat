@@ -68,30 +68,23 @@ export class CreaeditarolComponent implements OnInit {
       this.rol.descripcion = this.form.value.rdescripcion;
       this.rol.usuario.idUsuario = this.form.value.rusuario;
 
-      this.rS.insert(this.rol).subscribe(() => {
+      console.log(this.rol);
+
+      this.rS.insert(this.rol).subscribe((data) => {
         this.rS.list().subscribe((data) => {
           this.rS.setList(data);
           this.router.navigate(['roles']);
-          this.openSnackBar('Receta registrada correctamente', 'Cerrar');
+          const mensaje = this.edicion ? 'Dieta actualizada exitosamente' : 'Dieta registrada exitosamente';
+          this.openSnackBar(mensaje, 'Cerrar');
         });
       });
-    } else {
-      if (this.form.controls['rdescripcion'].invalid) {
-        this.openSnackBar(
-          'Por favor, complete la descripcion del rol.',
-          'Cerrar'
-        );
-      }
-      if (this.form.controls['rusuario'].invalid) {
-        this.openSnackBar('Por favor, seleccione un usuario.', 'Cerrar');
-      }
     }
   }
 
   init() {
     if (this.edicion) {
       this.rS.listId(this.id).subscribe((data) => {
-        this.form = new FormGroup({
+        this.form = this.formBuilder.group({
           rcodigo: new FormControl(data.idRol),
           rdescripcion: new FormControl(data.descripcion, Validators.required),
           rusuario: new FormControl(data.usuario.idUsuario, Validators.required),

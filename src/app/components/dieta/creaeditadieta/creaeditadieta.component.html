@@ -23,7 +23,7 @@
                   <mat-option [value]="food.idUsuario">{{ food.nombre }}</mat-option>
                   }
                 </mat-select>
-                <mat-error *ngIf="form.get('fusuario')?.hasError('required')">Elija un usuario</mat-error>
+                <mat-error *ngIf="form.get('fusuario')?.hasError('required')">Por favor, seleccione un usuario</mat-error>
               </mat-form-field>
             <br />
             <div>

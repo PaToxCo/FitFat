@@ -8,6 +8,7 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatInput, MatInputModule } from '@angular/material/input';
 import { MatIcon } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-listarrol',
@@ -19,15 +20,20 @@ import { RouterLink } from '@angular/router';
 export class ListarrolComponent implements OnInit {
   datasource: MatTableDataSource<Rol> = new MatTableDataSource();
   displayedColumns: string[] = ['c1', 'c2', 'c3','accion01','accion02'];
+  contador: number = 0;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private rS: RolService) {}
+  constructor(private rS: RolService,private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     this.rS.list().subscribe((data) => {
       this.datasource = new MatTableDataSource(data);
+      this.contador = data.length;
+      if (this.contador === 0) {
+        this.showNoDietasSnackbar();
+      }
     });
   }
   eliminar(id: number) {
@@ -47,5 +53,12 @@ export class ListarrolComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.datasource.filter = filterValue.trim().toLowerCase();
+  }
+  showNoDietasSnackbar() {
+    this.snackBar.open('No hay roles registrados', 'Cerrar', {
+      duration: 10000,
+      verticalPosition: 'bottom', // Posición en la pantalla
+      horizontalPosition: 'center',
+    });
   }
 }
