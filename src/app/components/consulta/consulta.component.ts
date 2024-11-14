@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterOutlet } from '@angular/router';
-import { ListarconsultaComponent } from './listarconsulta/listarconsulta.component';
+import { ListarConsultaComponent } from './listarconsulta/listarconsulta.component';
 
 @Component({
   selector: 'app-consulta',
   standalone: true,
-  imports: [RouterOutlet, ListarconsultaComponent],
+  imports: [RouterOutlet, ListarConsultaComponent],
   templateUrl: './consulta.component.html',
   styleUrl: './consulta.component.css'
 })

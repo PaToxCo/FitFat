@@ -1,0 +1,44 @@
+<div class="container">
+    <h2>{{ edicion ? 'Editar Consulta' : 'Crear Consulta' }}</h2>
+  
+    <form [formGroup]="form" (ngSubmit)="insertar()">
+      <!-- Campo Fecha de Consulta -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Fecha de Consulta</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="ffechaConsulta" required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="form.get('ffechaConsulta')?.hasError('required')">
+          La fecha es requerida.
+        </mat-error>
+      </mat-form-field>
+  
+      <!-- Campo Asunto -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Asunto</mat-label>
+        <input matInput formControlName="fasunto" required>
+        <mat-error *ngIf="form.get('fasunto')?.hasError('required')">
+          El asunto es requerido.
+        </mat-error>
+      </mat-form-field>
+  
+      <!-- Campo Descripción -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Descripción</mat-label>
+        <textarea matInput formControlName="fdescripcion" required></textarea>
+        <mat-error *ngIf="form.get('fdescripcion')?.hasError('required')">
+          La descripción es requerida.
+        </mat-error>
+      </mat-form-field>
+  
+      <!-- Botones de acción -->
+      <div class="button-group">
+        <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+          {{ edicion ? 'Actualizar' : 'Registrar' }}
+        </button>
+        <button mat-raised-button color="warn" type="button" (click)="cancelar()">
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </div>

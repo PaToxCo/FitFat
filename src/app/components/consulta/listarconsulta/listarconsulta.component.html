@@ -1,37 +1,49 @@
-<div>
-    <mat-form-field appearance="outline">
-        <mat-label>Buscar</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Buscar usuarios">
-      </mat-form-field>
-    <table mat-table [dataSource]="datasource" class="mat-elevation-z8">
-
-        <!-- ID Column -->
-        <ng-container matColumnDef="c1">
-            <th mat-header-cell *matHeaderCellDef> IdConsulta </th>
-            <td mat-cell *matCellDef="let element"> {{element.idComida}} </td>
-        </ng-container>
-
-        <!-- FechaConsulta Column -->
-        <ng-container matColumnDef="c2">
-            <th mat-header-cell *matHeaderCellDef> FechaConsulta </th>
-            <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
-        </ng-container>
-
-        <!-- Asunto Column -->
-        <ng-container matColumnDef="c3">
-            <th mat-header-cell *matHeaderCellDef> Asunto </th>
-            <td mat-cell *matCellDef="let element"> {{element.calorias}} </td>
-        </ng-container>
-
-        <!-- Descripcion Column -->
-        <ng-container matColumnDef="c4">
-            <th mat-header-cell *matHeaderCellDef> Descripcion </th>
-            <td mat-cell *matCellDef="let element"> {{element.proteinas}} </td>
-        </ng-container>
-
-       
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+<div class="table-container">
+    <mat-form-field appearance="fill">
+      <mat-label>Buscar</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Filtrar consultas">
+    </mat-form-field>
+  
+    <table mat-table [dataSource]="datasource" matSort>
+  
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+        <td mat-cell *matCellDef="let consulta"> {{ consulta.id }} </td>
+      </ng-container>
+  
+      <!-- Fecha de Consulta Column -->
+      <ng-container matColumnDef="fechaConsulta">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha Consulta </th>
+        <td mat-cell *matCellDef="let consulta"> {{ consulta.fechaConsulta | date }} </td>
+      </ng-container>
+  
+      <!-- Asunto Column -->
+      <ng-container matColumnDef="asunto">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Asunto </th>
+        <td mat-cell *matCellDef="let consulta"> {{ consulta.asunto }} </td>
+      </ng-container>
+  
+      <!-- Descripción Column -->
+      <ng-container matColumnDef="descripcion">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Descripción </th>
+        <td mat-cell *matCellDef="let consulta"> {{ consulta.descripcion }} </td>
+      </ng-container>
+  
+      <!-- AccionEliminar Column -->
+      <ng-container matColumnDef="accionEliminar">
+        <th mat-header-cell *matHeaderCellDef> Acción </th>
+        <td mat-cell *matCellDef="let consulta">
+          <button mat-icon-button color="warn" (click)="eliminar(consulta.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
-</div>
+  
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+  

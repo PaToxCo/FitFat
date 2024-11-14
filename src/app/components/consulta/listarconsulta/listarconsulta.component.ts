@@ -1,31 +1,57 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatInput, MatInputModule } from '@angular/material/input';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { MatSort, MatSortModule } from '@angular/material/sort';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
 import { Consulta } from '../../../models/consulta';
 import { ConsultaService } from '../../../services/consulta.service';
+import { MatSort, MatSortModule } from '@angular/material/sort';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatInput, MatInputModule } from '@angular/material/input';
+import { MatIcon, MatIconModule } from '@angular/material/icon';
+import { RouterLink, RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-listarconsulta',
   standalone: true,
-  imports: [MatTableModule, MatPaginatorModule, MatSortModule, MatInputModule, MatInput],
+  imports: [
+    RouterOutlet,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatInputModule,
+    MatInput,
+    MatIconModule,
+    RouterLink,
+    CommonModule,
+    MatIcon
+  ],
   templateUrl: './listarconsulta.component.html',
-  styleUrl: './listarconsulta.component.css'
+  styleUrls: ['./listarconsulta.component.css'],
 })
-export class ListarconsultaComponent implements OnInit {
+export class ListarConsultaComponent implements OnInit {
   datasource: MatTableDataSource<Consulta> = new MatTableDataSource();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  displayedColumns: string[] = ['c1', 'c2', 'c3','c4','c5'];
-  constructor(private conS: ConsultaService) { }
+  displayedColumns: string[] = ['id', 'fechaConsulta', 'asunto', 'descripcion', 'accionEliminar'];
+
+  constructor(private consultaService: ConsultaService) {}
+
   ngOnInit(): void {
-    this.conS.list().subscribe((data) => {
-      this.datasource = new MatTableDataSource(data)
+    this.consultaService.list().subscribe((data) => {
+      this.datasource = new MatTableDataSource(data);
     });
   }
+
+  eliminar(id: number) {
+    this.consultaService.delete(id).subscribe(() => {
+      this.consultaService.list().subscribe((data) => {
+        this.datasource.data = data;
+      });
+    });
+  }
+
   ngAfterViewInit(): void {
     this.datasource.paginator = this.paginator;
     this.datasource.sort = this.sort;
