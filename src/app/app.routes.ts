@@ -34,6 +34,7 @@ import { SumartotalcaloriasdedietaComponent } from './components/reportes/alimen
 import { LoginComponent } from './components/login/login.component';
 import { seguridadGuard } from './guard/seguridad.guard';
 import { HomeComponent } from './components/home/home.component';
+import { ListarusuariosComponent } from './components/usuarios/listarusuarios/listarusuarios.component';
 
 export const routes: Routes = [
     {
@@ -48,6 +49,9 @@ export const routes: Routes = [
     {
         path: 'usuarios', component: UsuariosComponent,
         children:[
+            {
+                path: 'user-details/:username',component: ListarusuariosComponent
+            },
             {
                 path:'nuevo',component: CreaeditausuariosComponent
             },

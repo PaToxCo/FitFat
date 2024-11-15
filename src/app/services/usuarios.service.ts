@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Usuarios } from '../models/usuarios';
 import { environment } from '../../environments/environment';
@@ -49,7 +49,13 @@ export class UsuariosService {
       `${this.url}/contar-usuarios`
     );
   }
-  obtenerUsuarioLogueado(usuario: string): Observable<any> {
-    return this.http.get(`${this.url}/logueado?usuario=${usuario}`);
+  obtenerUsuarioLogueado(): Observable<any> {
+    const token = sessionStorage.getItem('token');
+    if (!token) {
+      throw new Error('No se encontró el token de autenticación');
+    }
+
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<any>(`${this.url}/me`, { headers });
   }
 }
