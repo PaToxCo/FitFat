@@ -88,7 +88,7 @@ export class AppComponent {
   }
 
   isUser() {
-    return this.role === 'USER';
+    return this.role === 'PACIENTE';
   }
 
   isAdmin() {

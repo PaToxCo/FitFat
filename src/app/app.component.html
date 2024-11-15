@@ -16,37 +16,37 @@
   <button mat-button *ngIf="isAdmin()" [matMenuTriggerFor]="menuUsuario" class="animated-button">
     <fa-icon [icon]="faUser" class="icon-spacing"></fa-icon> Usuarios
   </button>
-  <button mat-button *ngIf="isUser()" [matMenuTriggerFor]="menuTipoComida" class="animated-button">
+  <button mat-button *ngIf="isUser() || isAdmin()" [matMenuTriggerFor]="menuTipoComida" class="animated-button">
     <fa-icon [icon]="faBowlFood" class="icon-spacing"></fa-icon> Tipos Comida
   </button>
-  <button mat-button *ngIf="isUser()" [matMenuTriggerFor]="menuDieta" class="animated-button">
+  <button mat-button *ngIf="isUser() || isAdmin()" [matMenuTriggerFor]="menuDieta" class="animated-button">
     <fa-icon [icon]="faEgg" class="icon-spacing"></fa-icon> Dietas
   </button>
-  <button mat-button *ngIf="isUser()" [matMenuTriggerFor]="menuControl" class="animated-button">
+  <button mat-button *ngIf="isUser() || isAdmin()" [matMenuTriggerFor]="menuControl" class="animated-button">
     <fa-icon [icon]="faDumbbell" class="icon-spacing"></fa-icon> Control
   </button>
-  <button mat-button *ngIf="isUser()" [matMenuTriggerFor]="menuRoles" class="animated-button">
+  <button mat-button *ngIf="isAdmin()" [matMenuTriggerFor]="menuRoles" class="animated-button">
     <fa-icon [icon]="faUser" class="icon-spacing"></fa-icon> Roles
   </button>
-  <button mat-button *ngIf="isUser()" [matMenuTriggerFor]="menuRecetas" class="animated-button">
+  <button mat-button *ngIf="isUser() || isAdmin()" [matMenuTriggerFor]="menuRecetas" class="animated-button">
     <fa-icon [icon]="faUtensils" class="icon-spacing"></fa-icon> Recetas
   </button>
-  <button mat-button *ngIf="isUser()"[matMenuTriggerFor]="menuAlimentos" class="animated-button">
+  <button mat-button *ngIf="isUser() || isAdmin()" [matMenuTriggerFor]="menuAlimentos" class="animated-button">
     <fa-icon [icon]="faCarrot" class="icon-spacing"></fa-icon> Alimentos
   </button>
-  <button mat-button *ngIf="isUser()" [matMenuTriggerFor]="menuComidas" class="animated-button">
+  <button mat-button *ngIf="isUser() || isAdmin()" [matMenuTriggerFor]="menuComidas" class="animated-button">
     <fa-icon [icon]="faBacon" class="icon-spacing"></fa-icon> Comidas
   </button>
-  <button mat-button *ngIf="isAdmin()" [matMenuTriggerFor]="menuConsultas" class="animated-button">
+  <button mat-button *ngIf="isUser() || isAdmin()" [matMenuTriggerFor]="menuConsultas" class="animated-button">
     <fa-icon [icon]="faQuestion" class="icon-spacing"></fa-icon> Consulta
   </button>
-  <button mat-button *ngIf="isAdmin()" [matMenuTriggerFor]="menuRespuesta" class="animated-button">
+  <button mat-button *ngIf="isUser() || isAdmin()" [matMenuTriggerFor]="menuRespuesta" class="animated-button">
     <fa-icon [icon]="faComment" class="icon-spacing"></fa-icon> Respuesta
   </button>
-  <button mat-button *ngIf="isUser()" [matMenuTriggerFor]="menuObjetivos" class="animated-button">
+  <button mat-button *ngIf="isUser() || isAdmin()" [matMenuTriggerFor]="menuObjetivos" class="animated-button">
     <fa-icon [icon]="faMedal" class="icon-spacing"></fa-icon> Objetivos
   </button>
-  <button mat-button *ngIf="isUser()" [matMenuTriggerFor]="menuReportes" class="animated-button">
+  <button mat-button *ngIf="isUser() || isAdmin()" [matMenuTriggerFor]="menuReportes" class="animated-button">
     <fa-icon [icon]="faCode" class="icon-spacing"></fa-icon> Reportes
   </button>
   <div class="right-menu">
@@ -55,6 +55,7 @@
     </button>
   </div>
 </mat-toolbar>
+
 
 <mat-menu #menuUsuario="matMenu">
   <button mat-menu-item routerLink="/usuarios">Listar</button>

@@ -25,7 +25,7 @@ export class ListardietaComponent {
   constructor(private dS: DietaService) { }
   ngOnInit(): void {
     this.dS.list().subscribe((data) => {
-      this.datasource = new MatTableDataSource(data)
+      this.datasource.data = data;
     });
     this.dS.getList().subscribe((data) => {
       this.datasource = new MatTableDataSource(data);
