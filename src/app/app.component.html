@@ -164,6 +164,10 @@
     Rol:
     <span>{{ role }}</span>
   </button>
+  <button mat-menu-item class="custom-menu-item">
+    Usuario:
+    <span>{{ usuario || 'Cargando...' }}</span>
+    </button>
 </mat-menu>
 
 <router-outlet></router-outlet>

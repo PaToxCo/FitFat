@@ -9,10 +9,9 @@ import { ContarUsuariosActivosInactivosDTO } from '../models/dtos/ContarUsuarios
 const base_url = environment.base;
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UsuariosService {
-
   private url = `${base_url}/usuarios`;
   private listaCambio = new Subject<Usuarios[]>();
 
@@ -21,13 +20,13 @@ export class UsuariosService {
   list() {
     return this.http.get<Usuarios[]>(this.url);
   }
-  insert(ve:Usuarios){
+  insert(ve: Usuarios) {
     return this.http.post(this.url, ve);
   }
-  getList(){
+  getList() {
     return this.listaCambio.asObservable();
   }
-  setList(listaNueva:Usuarios[]){
+  setList(listaNueva: Usuarios[]) {
     this.listaCambio.next(listaNueva);
   }
   delete(id: number) {
@@ -36,15 +35,21 @@ export class UsuariosService {
   listId(id: number) {
     return this.http.get<Usuarios>(`${this.url}/${id}`);
   }
-  update(u:Usuarios){
-    return this.http.put(this.url,u);
+  update(u: Usuarios) {
+    return this.http.put(this.url, u);
   }
   obtenerUsuariosPorRol(): Observable<UsuariosPorRolDTO[]> {
     return this.http.get<UsuariosPorRolDTO[]>(`${this.url}/usuarios-por-rol`);
   }
 
-  contarUsuariosActivosInactivos(): Observable<ContarUsuariosActivosInactivosDTO[]> {
-    return this.http.get<ContarUsuariosActivosInactivosDTO[]>(`${this.url}/contar-usuarios`
+  contarUsuariosActivosInactivos(): Observable<
+    ContarUsuariosActivosInactivosDTO[]
+  > {
+    return this.http.get<ContarUsuariosActivosInactivosDTO[]>(
+      `${this.url}/contar-usuarios`
     );
-}
+  }
+  obtenerUsuarioLogueado(usuario: string): Observable<any> {
+    return this.http.get(`${this.url}/logueado?usuario=${usuario}`);
+  }
 }

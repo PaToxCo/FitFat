@@ -49,6 +49,7 @@ import { LoginService } from './services/login.service';
 export class AppComponent {
   title = 'Fitfat';
   role: string = '';
+  usuario: string = '';
 
   constructor(private loginService: LoginService) {}
 
@@ -84,7 +85,12 @@ export class AppComponent {
 
   verificar() {
     this.role = this.loginService.showRole();
+    this.verificarUser();
     return this.loginService.verificar();
+  }
+
+  verificarUser() {
+    this.usuario = this.loginService.showUser();
   }
 
   isUser() {
