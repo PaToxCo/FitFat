@@ -40,7 +40,7 @@ export class ListardietaComponent {
     this.dS.list().subscribe((data) => {
       this.datasource = new MatTableDataSource(data);
       this.contador = data.length;
-      if (this.contador === 0) {
+      if (this.contador == 0) {
         this.showNoDietasSnackbar();
       }
     });
@@ -54,7 +54,8 @@ export class ListardietaComponent {
       this.dS.list().subscribe((data) => {
         this.dS.setList(data);
         this.contador = data.length;
-        if (this.contador === 0) {
+        this.showDeleteSnackbar();
+        if (this.contador == 0) {
           this.showNoDietasSnackbar();
         }
       });

@@ -32,7 +32,7 @@ export class ListarrolComponent implements OnInit {
       this.datasource = new MatTableDataSource(data);
       this.contador = data.length;
       if (this.contador === 0) {
-        this.showNoDietasSnackbar();
+        this.showNoRolesSnackbar();
       }
     });
   }
@@ -54,7 +54,7 @@ export class ListarrolComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.datasource.filter = filterValue.trim().toLowerCase();
   }
-  showNoDietasSnackbar() {
+  showNoRolesSnackbar() {
     this.snackBar.open('No hay roles registrados', 'Cerrar', {
       duration: 10000,
       verticalPosition: 'bottom', // Posición en la pantalla
