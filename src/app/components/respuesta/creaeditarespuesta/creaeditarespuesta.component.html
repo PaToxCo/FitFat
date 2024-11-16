@@ -1,1 +1,33 @@
-<p>creaeditarespuesta works!</p>
+<div class="form-container">
+    <form [formGroup]="form" (ngSubmit)="insertar()">
+      <mat-form-field appearance="fill">
+        <mat-label>Fecha de Respuesta</mat-label>
+        <input matInput formControlName="ffechaRespuesta" type="date" required />
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Asunto</mat-label>
+        <input matInput formControlName="fasunto" required />
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Descripción</mat-label>
+        <textarea matInput formControlName="fdescripcion" required></textarea>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Consulta</mat-label>
+        <mat-select formControlName="fconsulta" required>
+          <mat-option *ngFor="let consulta of listaConsultas" [value]="consulta.id">
+            {{ consulta.asunto }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <div class="buttons">
+        <button mat-raised-button color="primary" type="submit">Guardar</button>
+        <button mat-raised-button color="warn" (click)="cancelar()">Cancelar</button>
+      </div>
+    </form>
+  </div>
+  

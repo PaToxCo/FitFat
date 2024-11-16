@@ -12,6 +12,8 @@ import { ListarConsultaComponent } from './components/consulta/listarconsulta/li
 import { CreaEditaConsultaComponent } from './components/consulta/creaeditaconsulta/creaeditaconsulta.component';
 import { RespuestaComponent } from './components/respuesta/respuesta.component';
 import { ObjetivosComponent } from './components/objetivos/objetivos.component';
+import { ListarrespuestaComponent } from './components/respuesta/listarrespuesta/listarrespuesta.component';
+import { CreaEditaRespuestaComponent } from './components/respuesta/creaeditarespuesta/creaeditarespuesta.component';
 
 export const routes: Routes = [
     {
@@ -39,7 +41,17 @@ export const routes: Routes = [
         path: 'comidas', component: ComidaComponent
     },
     {
-        path: 'respuesta', component: RespuestaComponent
+        path: 'respuesta', component: RespuestaComponent, children:[
+            {
+                path: '', component: ListarrespuestaComponent,
+            },
+            {
+                path: 'crear', component: CreaEditaRespuestaComponent,
+            },
+            {
+                path: ':idRespuesta', component: CreaEditaRespuestaComponent,
+            },
+        ]
     },
     {
         path: 'objetivos', component: ObjetivosComponent
@@ -52,7 +64,7 @@ export const routes: Routes = [
             {
                 path: 'crear', component: CreaEditaConsultaComponent
             },
-            // Ruta predeterminada si no se especifica ninguna subruta
+    
             { path: '', redirectTo: 'listar', pathMatch: 'full' }
         ]
     },

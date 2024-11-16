@@ -1,42 +1,35 @@
-<div>
-    <mat-form-field appearance="outline">
-        <mat-label>Buscar</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Buscar usuarios">
-      </mat-form-field>
-    <table mat-table [dataSource]="datasource" class="mat-elevation-z8">
-
-        <!-- ID Column -->
-        <ng-container matColumnDef="c1">
-            <th mat-header-cell *matHeaderCellDef> IdRespuesta </th>
-            <td mat-cell *matCellDef="let element"> {{element.idComida}} </td>
-        </ng-container>
-
-        <!-- Asunto Column -->
-        <ng-container matColumnDef="c2">
-            <th mat-header-cell *matHeaderCellDef> Asunto </th>
-            <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
-        </ng-container>
-
-        <!-- Descripcion Column -->
-        <ng-container matColumnDef="c3">
-            <th mat-header-cell *matHeaderCellDef> Descripcion </th>
-            <td mat-cell *matCellDef="let element"> {{element.calorias}} </td>
-        </ng-container>
-
-        <!-- FechaRespuesta Column -->
-        <ng-container matColumnDef="c4">
-            <th mat-header-cell *matHeaderCellDef> FechaRespuesta </th>
-            <td mat-cell *matCellDef="let element"> {{element.proteinas}} </td>
-        </ng-container>
-
-        <!-- ConsultaId Column -->
-        <ng-container matColumnDef="c5">
-            <th mat-header-cell *matHeaderCellDef> ConsultaId </th>
-            <td mat-cell *matCellDef="let element"> {{element.proteinas}} </td>
-        </ng-container>
-       
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+<div class="table-container">
+    <mat-form-field appearance="fill">
+      <mat-label>Buscar</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Filtrar respuestas">
+    </mat-form-field>
+  
+    <table mat-table [dataSource]="datasource" matSort>
+      <ng-container matColumnDef="fechaRespuesta">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha de Respuesta </th>
+        <td mat-cell *matCellDef="let respuesta"> {{ respuesta.fechaRespuesta | date }} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="asunto">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Asunto </th>
+        <td mat-cell *matCellDef="let respuesta"> {{ respuesta.asunto }} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="descripcion">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Descripción </th>
+        <td mat-cell *matCellDef="let respuesta"> {{ respuesta.descripcion }} </td>
+      </ng-container>
+  
+      <!-- Si quieres mostrar el idConsulta -->
+      <ng-container matColumnDef="idConsulta">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID Consulta </th>
+        <td mat-cell *matCellDef="let respuesta"> {{ respuesta.consulta.id }} </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
-</div>
+  
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+  

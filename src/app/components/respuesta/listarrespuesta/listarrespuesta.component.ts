@@ -5,33 +5,55 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Respuesta } from '../../../models/respuesta';
 import { RespuestaService } from '../../../services/respuesta.service';
+import { ActivatedRoute } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-listarrespuesta',
   standalone: true,
-  imports: [MatTableModule, MatPaginatorModule, MatSortModule, MatInputModule, MatInput],
+  imports: [
+    MatTableModule, 
+    MatPaginatorModule, 
+    MatSortModule, 
+    MatInputModule, 
+    DatePipe
+  ],
   templateUrl: './listarrespuesta.component.html',
   styleUrl: './listarrespuesta.component.css'
 })
 export class ListarrespuestaComponent implements OnInit{
+  idConsulta!: number;
   datasource: MatTableDataSource<Respuesta> = new MatTableDataSource();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  displayedColumns: string[] = ['c1', 'c2', 'c3','c4'];
-  constructor(private rS: RespuestaService) { }
+  displayedColumns: string[] = ['idConsulta', 'fechaRespuesta', 'asunto', 'descripcion'];
+  constructor(
+   
+    private rS: RespuestaService,
+    private route: ActivatedRoute
+  ) { }
   ngOnInit(): void {
-    this.rS.list().subscribe((data) => {
-      this.datasource = new MatTableDataSource(data)
+    this.route.params.subscribe((params) => {
+      if (params['idConsulta']) {
+        this.idConsulta = +params['idConsulta']; 
+        this.cargarRespuestas();
+      } else {
+        console.warn('idConsulta no encontrado en la URL.');
+      }
+    });
+    
+  }
+  cargarRespuestas(): void {
+    this.rS.listarPorConsulta(this.idConsulta).subscribe((data) => {
+      this.datasource = new MatTableDataSource(data);
+      this.datasource.paginator = this.paginator;
+      this.datasource.sort = this.sort;
     });
   }
-  ngAfterViewInit(): void {
-    this.datasource.paginator = this.paginator;
-    this.datasource.sort = this.sort;
-  }
 
-  applyFilter(event: Event) {
+  applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
     this.datasource.filter = filterValue.trim().toLowerCase();
   }
