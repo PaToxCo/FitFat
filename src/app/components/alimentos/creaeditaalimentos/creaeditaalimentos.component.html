@@ -10,6 +10,7 @@
         <mat-form-field>
           <mat-label>Nombre</mat-label>
           <input matInput placeholder="Ingrese el nombre" formControlName="fnombre" />
+          <mat-error *ngIf="form.get('fnombre')?.hasError('required')">El campo nombre es obligatorio</mat-error>
         </mat-form-field>
         <br />
   
@@ -17,6 +18,8 @@
         <mat-form-field>
           <mat-label>Calorías</mat-label>
           <input matInput type="number" placeholder="Ingrese las calorías" formControlName="fcalorias" />
+          <mat-error *ngIf="form.get('fcalorias')?.hasError('required')">El campo calorias son obligatorias</mat-error>
+          <mat-error *ngIf="form.get('fcalorias')?.hasError('min')">Las calorias no pueden ser negativas</mat-error>
         </mat-form-field>
         <br />
   
@@ -24,6 +27,8 @@
         <mat-form-field>
           <mat-label>Proteínas</mat-label>
           <input matInput type="number" placeholder="Ingrese las proteínas" formControlName="fproteinas" />
+          <mat-error *ngIf="form.get('fproteinas')?.hasError('required')">El campo proteínas son obligatorias</mat-error>
+          <mat-error *ngIf="form.get('fcalorias')?.hasError('min')">Las proteínas no pueden ser negativas</mat-error>
         </mat-form-field>
         <br />
   
@@ -31,6 +36,8 @@
         <mat-form-field>
           <mat-label>Carbohidratos</mat-label>
           <input matInput type="number" placeholder="Ingrese los carbohidratos" formControlName="fcarbohidratos" />
+          <mat-error *ngIf="form.get('fcarbohidratos')?.hasError('required')">El campo carbohidratos son obligatorias</mat-error>
+          <mat-error *ngIf="form.get('fcalorias')?.hasError('min')">Los carbohidratos no pueden ser negativas</mat-error>
         </mat-form-field>
         <br />
   
@@ -38,6 +45,8 @@
         <mat-form-field>
           <mat-label>Grasas</mat-label>
           <input matInput type="number" placeholder="Ingrese las grasas" formControlName="fgrasa" />
+          <mat-error *ngIf="form.get('fgrasa')?.hasError('required')">El campo grasas son obligatorias</mat-error>
+          <mat-error *ngIf="form.get('fcalorias')?.hasError('min')">Las grasas no pueden ser negativas</mat-error>
         </mat-form-field>
         <br />
   
@@ -49,6 +58,7 @@
               {{ food.nombre }}
             </mat-option>
           </mat-select>
+          <mat-error *ngIf="form.get('fdieta')?.hasError('required')">El campo dieta son obligatorias</mat-error>
         </mat-form-field>
         <br />
   
@@ -60,6 +70,7 @@
               {{ food.nombre }}
             </mat-option>
           </mat-select>
+          <mat-error *ngIf="form.get('freceta')?.hasError('required')">El campo receta son obligatorias</mat-error>
         </mat-form-field>
         <br />
   
@@ -76,4 +87,3 @@
     </div>
   </div>
   
-  <!--HOLA-->

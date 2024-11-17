@@ -1,0 +1,16 @@
+mat-error {
+    color: #f44336;
+    font-weight: bold;
+    font-size: 14px;
+    background-color: #fce5e5;
+    padding: 3px;
+    border-radius: 4px;
+    margin-top: 5px;
+    white-space: normal; /* Permite que el texto haga salto de línea */
+    display: block; /* Asegura que el error ocupe toda la línea */
+  }
+  
+  mat-form-field {
+    width: 25%; /* Asegura que el campo tenga espacio suficiente */
+    margin-bottom: 20px; /* Añade espacio para que el mensaje de error no se corte */
+  }

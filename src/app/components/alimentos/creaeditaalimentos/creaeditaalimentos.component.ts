@@ -63,12 +63,12 @@ export class CreaeditaalimentosComponent implements OnInit {
     this.form = this.formBuilder.group({
       fcodigo: [''],
       fnombre: ['', Validators.required],
-      fcalorias: [0, Validators.required],
-      fproteinas: [0, Validators.required],
-      fcarbohidratos: [0, Validators.required],
-      fgrasa: [0, Validators.required],
+      fcalorias: ['',[Validators.required,Validators.min(0)]],
+      fproteinas: ['',[Validators.required,Validators.min(0)]],
+      fcarbohidratos: ['',[Validators.required,Validators.min(0)]],
+      fgrasa: ['',[Validators.required,Validators.min(0)]],
       fdieta: ['', Validators.required],
-      freceta: ['', Validators.required],
+      freceta: ['', Validators.required]
     });
   
     this.dS.list().subscribe((data) => {
