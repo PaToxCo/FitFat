@@ -1,0 +1,77 @@
+<div>
+    <h1></h1>
+    <mat-form-field appearance="outline">
+        <mat-label>Buscar</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Buscar usuarios">
+      </mat-form-field>
+    <table mat-table [dataSource]="datasource" class="mat-elevation-z8">
+
+        <!-- ID Column -->
+        <ng-container matColumnDef="c1">
+            <th mat-header-cell *matHeaderCellDef> ID Control </th>
+            <td mat-cell *matCellDef="let element"> {{element.idControl}} </td>
+        </ng-container>
+
+        <!-- Peso Column -->
+        <ng-container matColumnDef="c2">
+            <th mat-header-cell *matHeaderCellDef> Peso </th>
+            <td mat-cell *matCellDef="let element"> {{element.peso}} </td>
+        </ng-container>
+
+        <!-- Talla Column -->
+        <ng-container matColumnDef="c3">
+            <th mat-header-cell *matHeaderCellDef> Talla </th>
+            <td mat-cell *matCellDef="let element"> {{element.talla}} </td>
+        </ng-container>
+
+        <!-- Edad Column -->
+        <ng-container matColumnDef="c4">
+            <th mat-header-cell *matHeaderCellDef> Edad </th>
+            <td mat-cell *matCellDef="let element"> {{element.edad}} </td>
+        </ng-container>
+
+        <!-- Genero Column -->
+        <ng-container matColumnDef="c5">
+            <th mat-header-cell *matHeaderCellDef> Género </th>
+            <td mat-cell *matCellDef="let element"> {{element.genero}} </td>
+        </ng-container>
+
+        <!-- Dieta Column -->
+        <ng-container matColumnDef="c6">
+            <th mat-header-cell *matHeaderCellDef> Dieta </th>
+            <td mat-cell *matCellDef="let element"> {{element.dieta.nombre}} </td>
+        </ng-container>
+
+        <!-- Usuario Column -->
+        <ng-container matColumnDef="c7">
+            <th mat-header-cell *matHeaderCellDef> Usuario </th>
+            <td mat-cell *matCellDef="let element"> {{element.usuario.nombre}} </td>
+        </ng-container>
+
+        <!-- Fecha Column -->
+        <ng-container matColumnDef="c8">
+            <th mat-header-cell *matHeaderCellDef> Fecha </th>
+            <td mat-cell *matCellDef="let element"> {{element.fecha | date}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="accion01">
+            <th mat-header-cell *matHeaderCellDef> Eliminar </th>
+            <td mat-cell *matCellDef="let element" (click)="eliminar(element.idControl)">
+              <mat-icon style="color: #8A47EB">delete</mat-icon>
+            </td>
+          </ng-container>
+    
+          <ng-container matColumnDef="accion02">
+            <th mat-header-cell *matHeaderCellDef> Actualizar </th>
+            <td mat-cell *matCellDef="let element">
+              <button mat-raised-button [routerLink]="['ediciones', element.idControl]">
+                <mat-icon style="color: #8A47EB">edit</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+</div>

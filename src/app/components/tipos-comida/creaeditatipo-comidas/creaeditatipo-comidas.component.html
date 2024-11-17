@@ -1,0 +1,38 @@
+<div class="container" style="text-align: center">
+    <div class="container-title">
+        <p class="title">{{ edicion ? 'Actualizar Tipo de comida' : 'Registrar Tipo de comida' }}</p>
+      </div>
+    <div>
+        <form [formGroup]="form" (ngSubmit)="insertar()">
+            <mat-form-field appearance="fill">
+                <mat-label>Descripción</mat-label>
+                <input matInput formControlName="fdescripcion" required />
+            </mat-form-field>
+            <br />
+            <mat-form-field appearance="fill">
+                <mat-label>Tipo</mat-label>
+                <mat-select formControlName="ftipo" required>
+                    <mat-option *ngFor="let tipo of listaTipo" [value]="tipo.value">
+                        {{ tipo.viewValue }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br />
+            <mat-form-field appearance="fill">
+                <mat-label>Categoría</mat-label>
+                <mat-select formControlName="fcategoria" required>
+                    <mat-option *ngFor="let categoria of listaCategoria" [value]="categoria.value">
+                        {{ categoria.viewValue }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br />
+            <div>
+                <button mat-flat-button color="primary" class="custom-button">
+                  {{ edicion ? 'Actualizar' : 'Registrar' }}
+                </button>
+                <button *ngIf="edicion" mat-flat-button color="warn" class="custom-button2" (click)="cancelar()">Cancelar</button>
+              </div>
+        </form>
+    </div>
+</div>

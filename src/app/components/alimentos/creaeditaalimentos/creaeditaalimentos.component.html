@@ -1,0 +1,79 @@
+<div class="container" style="text-align: center; margin-bottom: 1px;">
+    <div class="container-title">
+      <p class="title">{{ edicion ? 'Actualizar Alimento' : 'Registrar Alimento' }}</p>
+    </div>
+  
+    <div>
+      <form [formGroup]="form" (ngSubmit)="insertar()">
+        
+        <!-- Campo para el nombre -->
+        <mat-form-field>
+          <mat-label>Nombre</mat-label>
+          <input matInput placeholder="Ingrese el nombre" formControlName="fnombre" />
+        </mat-form-field>
+        <br />
+  
+        <!-- Campo para calorías -->
+        <mat-form-field>
+          <mat-label>Calorías</mat-label>
+          <input matInput type="number" placeholder="Ingrese las calorías" formControlName="fcalorias" />
+        </mat-form-field>
+        <br />
+  
+        <!-- Campo para proteínas -->
+        <mat-form-field>
+          <mat-label>Proteínas</mat-label>
+          <input matInput type="number" placeholder="Ingrese las proteínas" formControlName="fproteinas" />
+        </mat-form-field>
+        <br />
+  
+        <!-- Campo para carbohidratos -->
+        <mat-form-field>
+          <mat-label>Carbohidratos</mat-label>
+          <input matInput type="number" placeholder="Ingrese los carbohidratos" formControlName="fcarbohidratos" />
+        </mat-form-field>
+        <br />
+  
+        <!-- Campo para grasas -->
+        <mat-form-field>
+          <mat-label>Grasas</mat-label>
+          <input matInput type="number" placeholder="Ingrese las grasas" formControlName="fgrasa" />
+        </mat-form-field>
+        <br />
+  
+        <!-- Selector de dieta -->
+        <mat-form-field>
+          <mat-label>Dieta</mat-label>
+          <mat-select formControlName="fdieta">
+            <mat-option *ngFor="let food of listaDieta" [value]="food.idDieta">
+              {{ food.nombre }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br />
+  
+        <!-- Selector de receta -->
+        <mat-form-field>
+          <mat-label>Receta</mat-label>
+          <mat-select formControlName="freceta">
+            <mat-option *ngFor="let food of listaReceta" [value]="food.idReceta">
+              {{ food.nombre }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br />
+  
+        <!-- Botones de acción -->
+        <div>
+          <button mat-flat-button color="primary" class="custom-button">
+            {{ edicion ? 'Actualizar' : 'Registrar' }}
+          </button>
+          <button *ngIf="edicion" mat-flat-button color="warn" class="custom-button2" (click)="cancelar()">
+            Cancelar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  <!--HOLA-->
