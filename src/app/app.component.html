@@ -184,6 +184,16 @@
     Usuario:
     <span>{{ usuario || 'Cargando...' }}</span>
     </button>
+  <button mat-menu-item routerLink="/reportes/calorias" class="custom-menu-item">
+    <mat-icon>bar_chart</mat-icon>Reporte calorias por usuario
+  </button>
+  <button mat-menu-item routerLink="/reportes/carbohidratos" class="custom-menu-item">
+    <mat-icon>bar_chart</mat-icon>Reporte carbohidratos por usuario
+  </button>
+  <button mat-menu-item routerLink="/reportes/grasas" class="custom-menu-item">
+    <mat-icon>bar_chart</mat-icon>Reporte grasas por usuario
+  </button>
+
 </mat-menu>
 
 <router-outlet></router-outlet>

@@ -40,9 +40,15 @@ import { BienvenidaComponent } from './components/bienvenida/bienvenida.componen
 
 import { CreaeditarolComponent } from './components/rol/creaeditarol/creaeditarol.component';
 import { CantidaddietaporusuarioComponent } from './components/reportes/dieta/cantidaddietaporusuario/cantidaddietaporusuario.component';
+
 import { DuraciondietasporusuarioComponent } from './components/reportes/dieta/duraciondietasporusuario/duraciondietasporusuario.component';
 import { RolesactivosComponent } from './components/reportes/rol/rolesactivos/rolesactivos.component';
 
+
+
+import { CaloriasporalimentoComponent } from './components/reportes/alimentos/caloriasporalimento/caloriasporalimento.component';
+import { CarbohidratosporalimentoComponent } from './components/reportes/alimentos/carbohidratosporalimento/carbohidratosporalimento.component';
+import { GrasasporalimentoComponent } from './components/reportes/alimentos/grasasporalimento/grasasporalimento.component';
 
 
 export const routes: Routes = [
@@ -238,7 +244,16 @@ export const routes: Routes = [
           {
             path:'activerol', component:RolesactivosComponent,
           }
-            
+
+            path:'calorias', component:CaloriasporalimentoComponent,
+          },
+          {
+            path:'carbohidratos', component:CarbohidratosporalimentoComponent,
+          },
+          {
+            path:'grasas', component:GrasasporalimentoComponent,
+          },
+         
         ]
 
       },
