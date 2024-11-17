@@ -25,6 +25,7 @@ import { ContarusuariosactivosinactivosComponent } from './components/reportes/u
 import { CreaeditarolComponent } from './components/rol/creaeditarol/creaeditarol.component';
 import { CantidaddietaporusuarioComponent } from './components/reportes/dieta/cantidaddietaporusuario/cantidaddietaporusuario.component';
 import { DuraciondietasporusuarioComponent } from './components/reportes/dieta/duraciondietasporusuario/duraciondietasporusuario.component';
+import { RolesactivosComponent } from './components/reportes/rol/rolesactivos/rolesactivos.component';
 
 
 export const routes: Routes = [
@@ -150,6 +151,9 @@ export const routes: Routes = [
           },
           {
             path:'totalduration', component:DuraciondietasporusuarioComponent,
+          },
+          {
+            path:'activerol', component:RolesactivosComponent,
           }
             
         ]
