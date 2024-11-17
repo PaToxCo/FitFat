@@ -35,16 +35,26 @@ import { LoginComponent } from './components/login/login.component';
 import { seguridadGuard } from './guard/seguridad.guard';
 import { HomeComponent } from './components/home/home.component';
 import { ListarusuariosComponent } from './components/usuarios/listarusuarios/listarusuarios.component';
+import { BienvenidaComponent } from './components/bienvenida/bienvenida.component';
 
 export const routes: Routes = [
     {
         path: '',
-        redirectTo: 'login',
+        redirectTo: 'homes',
         pathMatch: 'full',
       },
       {
         path: 'login',
         component: LoginComponent,
+      },
+      {
+        path: 'bienvenida',
+        component: BienvenidaComponent,
+        canActivate: [seguridadGuard],
+      },
+      {
+        path: 'homes',
+        component: HomeComponent,
       },
     {
         path: 'usuarios', component: UsuariosComponent,
@@ -199,10 +209,5 @@ export const routes: Routes = [
           
         ],
         canActivate: [seguridadGuard],
-      },
-      {
-        path: 'homes',
-        component: HomeComponent,
-        canActivate: [seguridadGuard], 
       },
 ];

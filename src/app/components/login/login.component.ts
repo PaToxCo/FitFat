@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
       (data: any) => {
         // Guardar el token en sessionStorage
         sessionStorage.setItem('token', data.jwttoken);
-        this.router.navigate(['homes']);
+        this.router.navigate(['bienvenida']);
         // Ocultar el preloader
         this.appComponent.hideLoader();
       },

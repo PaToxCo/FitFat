@@ -11,8 +11,11 @@
     <div class="text">Loading...</div>
   </div>
 </div>
-<mat-toolbar color="primary" *ngIf="verificar()" @listAnimation>
+<mat-toolbar color="primary" [@listAnimation] *ngIf="!currentRoute.includes('home')">
   <img src="assets/img/logofitfat.png" alt="Logo FitFat" class="logo">
+  <button mat-button *ngIf="isUser() || isAdmin()" [matMenuTriggerFor]="menuHome" class="animated-button">
+    <fa-icon [icon]="faBowlFood" class="icon-spacing"></fa-icon> Home
+  </button>
   <button mat-button *ngIf="isAdmin()" [matMenuTriggerFor]="menuUsuario" class="animated-button">
     <fa-icon [icon]="faUser" class="icon-spacing"></fa-icon> Usuarios
   </button>
@@ -56,6 +59,9 @@
   </div>
 </mat-toolbar>
 
+<mat-menu #menuHome="matMenu">
+  <button mat-menu-item routerLink="/homes">Home</button>
+</mat-menu>
 
 <mat-menu #menuUsuario="matMenu">
   <button mat-menu-item routerLink="/usuarios">Listar</button>
