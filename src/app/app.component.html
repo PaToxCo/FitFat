@@ -14,7 +14,7 @@
 <mat-toolbar color="primary" [@listAnimation] *ngIf="!currentRoute.includes('home')">
   <img src="assets/img/logofitfat.png" alt="Logo FitFat" class="logo">
   <button mat-button *ngIf="isUser() || isAdmin()" [matMenuTriggerFor]="menuHome" class="animated-button">
-    <fa-icon [icon]="faBowlFood" class="icon-spacing"></fa-icon> Home
+    <fa-icon [icon]="faHouse" class="icon-spacing"></fa-icon> Home
   </button>
   <button mat-button *ngIf="isAdmin()" [matMenuTriggerFor]="menuUsuario" class="animated-button">
     <fa-icon [icon]="faUser" class="icon-spacing"></fa-icon> Usuarios
@@ -184,15 +184,7 @@
     Usuario:
     <span>{{ usuario || 'Cargando...' }}</span>
     </button>
-  <button mat-menu-item routerLink="/reportes/calorias" class="custom-menu-item">
-    <mat-icon>bar_chart</mat-icon>Reporte calorias por usuario
-  </button>
-  <button mat-menu-item routerLink="/reportes/carbohidratos" class="custom-menu-item">
-    <mat-icon>bar_chart</mat-icon>Reporte carbohidratos por usuario
-  </button>
-  <button mat-menu-item routerLink="/reportes/grasas" class="custom-menu-item">
-    <mat-icon>bar_chart</mat-icon>Reporte grasas por usuario
-  </button>
+
 
 </mat-menu>
 

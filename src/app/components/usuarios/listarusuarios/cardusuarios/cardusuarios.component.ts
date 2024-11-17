@@ -1,15 +1,14 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UsuariosService } from '../../../../services/usuarios.service';
-import { Router } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
 import { HttpErrorResponse } from '@angular/common/http';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-cardusuarios',
   standalone: true,
-  imports: [MatCardModule, MatButtonModule, CommonModule],
+  imports: [MatCardModule, CommonModule, RouterLink],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './cardusuarios.component.html',
   styleUrls: ['./cardusuarios.component.css']
@@ -17,21 +16,22 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class CardusuariosComponent implements OnInit {
   usuario: any;
 
-  constructor(private usuarioService: UsuariosService, private router: Router) {}
+  constructor(
+    private usuarioService: UsuariosService,
+    private cdRef: ChangeDetectorRef 
+  ) {}
 
   ngOnInit(): void {
     this.obtenerUsuarioLogueado();
   }
 
-  // Método para obtener los datos del usuario logueado
   obtenerUsuarioLogueado(): void {
     this.usuarioService.obtenerUsuarioLogueado().subscribe(
       (data) => {
         console.log('Datos del usuario:', data);
-        this.usuario = {
-          username: data.username // Asignamos solo el 'username'
-        };
+        this.usuario = data;  
         console.log('Usuario cargado:', this.usuario);
+        this.cdRef.detectChanges(); 
       },
       (error: HttpErrorResponse) => {
         console.error('Error al obtener usuario logueado:', error);
@@ -39,16 +39,4 @@ export class CardusuariosComponent implements OnInit {
       }
     );
   }
-
-  // Método para navegar a la página de detalles del usuario
-  verDetalles(): void {
-    if (this.usuario && this.usuario.username) {
-      // Navegar a la ruta 'user-details/:username'
-      this.router.navigate(['/usuarios/user-details', this.usuario.username]);
-    } else {
-      console.error('Usuario no encontrado');
-    }
-  }
-  
-  
 }

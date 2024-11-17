@@ -54,8 +54,9 @@ export class UsuariosService {
     if (!token) {
       throw new Error('No se encontró el token de autenticación');
     }
-
+  
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get<any>(`${this.url}/me`, { headers });
   }
+  
 }

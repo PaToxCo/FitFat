@@ -37,14 +37,9 @@ import { seguridadGuard } from './guard/seguridad.guard';
 import { HomeComponent } from './components/home/home.component';
 import { ListarusuariosComponent } from './components/usuarios/listarusuarios/listarusuarios.component';
 import { BienvenidaComponent } from './components/bienvenida/bienvenida.component';
-
 import { CreaeditarolComponent } from './components/rol/creaeditarol/creaeditarol.component';
 import { CantidaddietaporusuarioComponent } from './components/reportes/dieta/cantidaddietaporusuario/cantidaddietaporusuario.component';
-
 import { DuraciondietasporusuarioComponent } from './components/reportes/dieta/duraciondietasporusuario/duraciondietasporusuario.component';
-
-
-
 import { CaloriasporalimentoComponent } from './components/reportes/alimentos/caloriasporalimento/caloriasporalimento.component';
 import { CarbohidratosporalimentoComponent } from './components/reportes/alimentos/carbohidratosporalimento/carbohidratosporalimento.component';
 import { GrasasporalimentoComponent } from './components/reportes/alimentos/grasasporalimento/grasasporalimento.component';
@@ -73,7 +68,7 @@ export const routes: Routes = [
         path: 'usuarios', component: UsuariosComponent,
         children:[
             {
-                path: 'user-details/:username',component: ListarusuariosComponent
+                path: 'user-details/:id',component: ListarusuariosComponent
             },
             {
                 path:'nuevo',component: CreaeditausuariosComponent
@@ -247,5 +242,8 @@ export const routes: Routes = [
           },
         ],
           canActivate: [seguridadGuard],
+         
       },
-];
+      
+    ]
+        
