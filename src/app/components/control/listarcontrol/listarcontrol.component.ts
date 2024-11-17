@@ -27,7 +27,7 @@ export class ListarcontrolComponent implements OnInit {
 
   ngOnInit(): void {
     this.cS.list().subscribe((data) => {
-      this.datasource = new MatTableDataSource(data);
+      this.datasource.data = data;
     });
     this.cS.getList().subscribe((data) => {
       this.datasource = new MatTableDataSource(data);

@@ -31,8 +31,8 @@ export class SumacaloriasusuarioComponent implements OnInit {
         {
           data: data.map((item) => item.sumaCalorias),
           label: 'Suma de calorías acumuladas de todas las comidas por usuario',
-          backgroundColor: ['#22712e', '#8cdf99', '#30f54f'],
-          borderColor: '#22712e',
+          backgroundColor: ['#8a47eb', '#a163f8', '#b87ff5', '#cea2ff', '#e0c1ff'],
+          borderColor: '#8a47eb',
           borderWidth: 1
         },
       ];

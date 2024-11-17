@@ -22,23 +22,68 @@ import { ReportesComponent } from './components/reportes/reportes.component';
 import { SumacaloriasusuarioComponent } from './components/reportes/comida/sumacaloriasusuario/sumacaloriasusuario.component';
 import { ContarusuariosporrolComponent } from './components/reportes/usuarios/contarusuariosporrol/contarusuariosporrol.component';
 import { ContarusuariosactivosinactivosComponent } from './components/reportes/usuarios/contarusuariosactivosinactivos/contarusuariosactivosinactivos.component';
+
+import { ContarporcategoriaComponent } from './components/reportes/tipo-comida/contarporcategoria/contarporcategoria.component';
+import { ObtenerFechasPorEstadoComponent } from './components/reportes/objetivos/obtenerfechasporestado/obtenerfechasporestado.component';
+import { ObtenerDuracionPorTipoDeObjetivoComponent } from './components/reportes/objetivos/obtenerduracionportipodeobjetivo/obtenerduracionportipodeobjetivo.component';
+import { SumadescripcionderecetaporcomidaComponent } from './components/reportes/receta/sumadescripcionderecetaporcomida/sumadescripcionderecetaporcomida.component';
+import { ContarrecetaporcomidaComponent } from './components/reportes/receta/contarrecetaporcomida/contarrecetaporcomida.component';
+import { ContarcontrolporgeneroComponent } from './components/reportes/control/contarcontrolporgenero/contarcontrolporgenero.component';
+import { ContarcontrolpordietaComponent } from './components/reportes/control/contarcontrolpordieta/contarcontrolpordieta.component';
+import { ContaralimentospordietaComponent } from './components/reportes/alimentos/contaralimentospordieta/contaralimentospordieta.component';
+import { SumartotalcaloriasdedietaComponent } from './components/reportes/alimentos/sumartotalcaloriasdedieta/sumartotalcaloriasdedieta.component';
+import { LoginComponent } from './components/login/login.component';
+import { seguridadGuard } from './guard/seguridad.guard';
+import { HomeComponent } from './components/home/home.component';
+import { ListarusuariosComponent } from './components/usuarios/listarusuarios/listarusuarios.component';
+import { BienvenidaComponent } from './components/bienvenida/bienvenida.component';
+
 import { CreaeditarolComponent } from './components/rol/creaeditarol/creaeditarol.component';
 import { CantidaddietaporusuarioComponent } from './components/reportes/dieta/cantidaddietaporusuario/cantidaddietaporusuario.component';
+
+import { DuraciondietasporusuarioComponent } from './components/reportes/dieta/duraciondietasporusuario/duraciondietasporusuario.component';
+import { RolesactivosComponent } from './components/reportes/rol/rolesactivos/rolesactivos.component';
+
+
+
 import { CaloriasporalimentoComponent } from './components/reportes/alimentos/caloriasporalimento/caloriasporalimento.component';
 import { CarbohidratosporalimentoComponent } from './components/reportes/alimentos/carbohidratosporalimento/carbohidratosporalimento.component';
 import { GrasasporalimentoComponent } from './components/reportes/alimentos/grasasporalimento/grasasporalimento.component';
 
+
 export const routes: Routes = [
+    {
+        path: '',
+        redirectTo: 'homes',
+        pathMatch: 'full',
+      },
+      {
+        path: 'login',
+        component: LoginComponent,
+      },
+      {
+        path: 'bienvenida',
+        component: BienvenidaComponent,
+        canActivate: [seguridadGuard],
+      },
+      {
+        path: 'homes',
+        component: HomeComponent,
+      },
     {
         path: 'usuarios', component: UsuariosComponent,
         children:[
+            {
+                path: 'user-details/:username',component: ListarusuariosComponent
+            },
             {
                 path:'nuevo',component: CreaeditausuariosComponent
             },
             {
                 path: 'ediciones/:id', component: CreaeditausuariosComponent,
             },
-        ]
+        ],
+        canActivate: [seguridadGuard],
     },
     {
         path: 'tipos-comida', component: TiposComidaComponent,
@@ -49,7 +94,8 @@ export const routes: Routes = [
             {
                 path: 'ediciones/:id', component: CreaeditatipoComidasComponent,
             },
-        ]
+        ],
+        canActivate: [seguridadGuard],
     },
     {
         path: 'dietas', component: DietaComponent,
@@ -60,10 +106,14 @@ export const routes: Routes = [
             {
                 path: 'ediciones/:id', component: CreaeditadietaComponent,
             },
-        ]
+        ],
+        canActivate: [seguridadGuard],
     },
     {
         path: 'roles', component: RolComponent,
+
+        canActivate: [seguridadGuard],
+
         children:[
             {
                 path:'nuevo', component: CreaeditarolComponent,
@@ -72,6 +122,7 @@ export const routes: Routes = [
                 path: 'ediciones/:id', component: CreaeditarolComponent,
             },
         ]
+
     },
     {
         path: 'control', component: ControlComponent,
@@ -82,7 +133,8 @@ export const routes: Routes = [
             {
                 path: 'ediciones/:id', component: CreaeditacontrolComponent,
             },
-        ]
+        ],
+        canActivate: [seguridadGuard],
     },
     {
         path: 'recetas', component: RecetaComponent,
@@ -93,7 +145,8 @@ export const routes: Routes = [
             {
                 path: 'ediciones/:id', component: CreaeditarecetaComponent,
             },
-        ]
+        ],
+        canActivate: [seguridadGuard],
     },
     {
         path: 'alimentos', component: AlimentosComponent,
@@ -104,7 +157,8 @@ export const routes: Routes = [
             {
                 path: 'ediciones/:id', component: CreaeditaalimentosComponent,
             },
-        ]
+        ],
+        canActivate: [seguridadGuard],
     },
     {
         path: 'comidas', component: ComidaComponent,
@@ -115,13 +169,16 @@ export const routes: Routes = [
             {
                 path: 'ediciones/:id', component: CreaeditacomidaComponent,
             },
-        ]
+        ],
+        canActivate: [seguridadGuard],
     },
     {
-        path: 'consulta', component: ConsultaComponent
+        path: 'consulta', component: ConsultaComponent,
+        canActivate: [seguridadGuard],
     },
     {
-        path: 'respuesta', component: RespuestaComponent
+        path: 'respuesta', component: RespuestaComponent,
+        canActivate: [seguridadGuard],
     },
     {
         path: 'objetivos', component: ObjetivosComponent,
@@ -132,7 +189,8 @@ export const routes: Routes = [
             {
                 path: 'ediciones/:id', component: CreaeditaobjetivosComponent,
             },
-        ]
+        ],
+        canActivate: [seguridadGuard],
     },
     {
         path:'reportes',component:ReportesComponent,
@@ -147,9 +205,46 @@ export const routes: Routes = [
             path:'usuarios-por-rol',component:ContarusuariosporrolComponent,
           },
           {
+
+            path:'tipo-de-comida',component:ContarporcategoriaComponent,
+          },
+          {
+            path:'obtener-fecha-por-estado',component:ObtenerFechasPorEstadoComponent,
+          },
+          {
+            path:'duracion-de-fecha-por-tipo',component:ObtenerDuracionPorTipoDeObjetivoComponent,
+          },
+          {
+            path:'suma-descrip-de-receta-de-comida',component:SumadescripcionderecetaporcomidaComponent,
+          },
+          {
+            path:'contar-recetas-por-comida',component:ContarrecetaporcomidaComponent,
+          },
+          {
+            path:'contar-control-por-genero',component:ContarcontrolporgeneroComponent,
+          },
+          {
+            path:'contar-control-por-dieta',component:ContarcontrolpordietaComponent,
+          },
+          {
+            path:'contar-alimentos-por-dieta',component:ContaralimentospordietaComponent,
+          },
+          {
+            path:'sumar-total-calorias-por-dieta',component:SumartotalcaloriasdedietaComponent,
+          }
+          
+        ],
+        canActivate: [seguridadGuard],
+
             path:'quantitydiet', component:CantidaddietaporusuarioComponent,
           },
           {
+            path:'totalduration', component:DuraciondietasporusuarioComponent,
+          },
+          {
+            path:'activerol', component:RolesactivosComponent,
+          }
+
             path:'calorias', component:CaloriasporalimentoComponent,
           },
           {
@@ -158,7 +253,8 @@ export const routes: Routes = [
           {
             path:'grasas', component:GrasasporalimentoComponent,
           },
-            
+         
         ]
+
       },
 ];

@@ -44,5 +44,14 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
+    <ng-template #noRecords>
+      <div style="text-align: center; color: gray; font-style: italic; margin-top: 20px;">
+        No hay roles registradas.
+      </div>
+      
+    </ng-template>
+    <div style="margin-top: 10px;">
+      Total de registros: {{ contador }}
+    </div>
     <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
 </div>
