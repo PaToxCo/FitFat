@@ -22,6 +22,7 @@ import { ReportesComponent } from './components/reportes/reportes.component';
 import { SumacaloriasusuarioComponent } from './components/reportes/comida/sumacaloriasusuario/sumacaloriasusuario.component';
 import { ContarusuariosporrolComponent } from './components/reportes/usuarios/contarusuariosporrol/contarusuariosporrol.component';
 import { ContarusuariosactivosinactivosComponent } from './components/reportes/usuarios/contarusuariosactivosinactivos/contarusuariosactivosinactivos.component';
+
 import { ContarporcategoriaComponent } from './components/reportes/tipo-comida/contarporcategoria/contarporcategoria.component';
 import { ObtenerFechasPorEstadoComponent } from './components/reportes/objetivos/obtenerfechasporestado/obtenerfechasporestado.component';
 import { ObtenerDuracionPorTipoDeObjetivoComponent } from './components/reportes/objetivos/obtenerduracionportipodeobjetivo/obtenerduracionportipodeobjetivo.component';
@@ -36,6 +37,13 @@ import { seguridadGuard } from './guard/seguridad.guard';
 import { HomeComponent } from './components/home/home.component';
 import { ListarusuariosComponent } from './components/usuarios/listarusuarios/listarusuarios.component';
 import { BienvenidaComponent } from './components/bienvenida/bienvenida.component';
+import { CreaeditarolComponent } from './components/rol/creaeditarol/creaeditarol.component';
+import { CantidaddietaporusuarioComponent } from './components/reportes/dieta/cantidaddietaporusuario/cantidaddietaporusuario.component';
+import { DuraciondietasporusuarioComponent } from './components/reportes/dieta/duraciondietasporusuario/duraciondietasporusuario.component';
+import { CaloriasporalimentoComponent } from './components/reportes/alimentos/caloriasporalimento/caloriasporalimento.component';
+import { CarbohidratosporalimentoComponent } from './components/reportes/alimentos/carbohidratosporalimento/carbohidratosporalimento.component';
+import { GrasasporalimentoComponent } from './components/reportes/alimentos/grasasporalimento/grasasporalimento.component';
+
 
 export const routes: Routes = [
     {
@@ -60,7 +68,7 @@ export const routes: Routes = [
         path: 'usuarios', component: UsuariosComponent,
         children:[
             {
-                path: 'user-details/:username',component: ListarusuariosComponent
+                path: 'user-details/:id',component: ListarusuariosComponent
             },
             {
                 path:'nuevo',component: CreaeditausuariosComponent
@@ -97,7 +105,18 @@ export const routes: Routes = [
     },
     {
         path: 'roles', component: RolComponent,
+
         canActivate: [seguridadGuard],
+
+        children:[
+            {
+                path:'nuevo', component: CreaeditarolComponent,
+            },
+            {
+                path: 'ediciones/:id', component: CreaeditarolComponent,
+            },
+        ]
+
     },
     {
         path: 'control', component: ControlComponent,
@@ -205,9 +224,26 @@ export const routes: Routes = [
           },
           {
             path:'sumar-total-calorias-por-dieta',component:SumartotalcaloriasdedietaComponent,
-          }
-          
+          },
+          {
+            path:'quantitydiet', component:CantidaddietaporusuarioComponent,
+          },
+          {
+            path:'totalduration', component:DuraciondietasporusuarioComponent,
+          },
+          {
+            path:'calorias', component:CaloriasporalimentoComponent,
+          },
+          {
+            path:'carbohidratos', component:CarbohidratosporalimentoComponent,
+          },
+          {
+            path:'grasas', component:GrasasporalimentoComponent,
+          },
         ],
-        canActivate: [seguridadGuard],
+          canActivate: [seguridadGuard],
+         
       },
-];
+      
+    ]
+        

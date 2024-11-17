@@ -24,8 +24,34 @@
             <td mat-cell *matCellDef="let element"> {{element.usuario.nombre}} </td> <!-- Asumiendo que el atributo a mostrar es 'nombre' -->
         </ng-container>
 
+        <ng-container matColumnDef="accion02">
+            <th mat-header-cell *matHeaderCellDef> Eliminar </th>
+            <td mat-cell *matCellDef="let element" (click)="eliminar(element.idRol)">
+              <mat-icon style="color: #8A47EB">delete</mat-icon>
+            </td>
+          </ng-container>
+
+        <ng-container matColumnDef="accion01">
+            <th mat-header-cell *matHeaderCellDef> Actualizar </th>
+            <td mat-cell *matCellDef="let element">
+              <button mat-raised-button [routerLink]="['ediciones', element.idRol]">
+                <mat-icon style="color: #8A47EB">edit</mat-icon>
+              </button>
+            </td>
+        </ng-container>
+        
+
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
+    <ng-template #noRecords>
+      <div style="text-align: center; color: gray; font-style: italic; margin-top: 20px;">
+        No hay roles registradas.
+      </div>
+      
+    </ng-template>
+    <div style="margin-top: 10px;">
+      Total de registros: {{ contador }}
+    </div>
     <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
 </div>

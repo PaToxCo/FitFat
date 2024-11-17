@@ -31,7 +31,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    // Inicializa el carrusel una vez que el DOM esté cargado
     $(document).ready(() => {
       $('#review-carousel').owlCarousel({
         loop: true,

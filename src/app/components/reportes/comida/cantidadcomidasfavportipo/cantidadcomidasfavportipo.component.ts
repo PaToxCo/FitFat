@@ -16,6 +16,7 @@ Chart.register(...registerables);
 export class CantidadcomidasfavportipoComponent implements OnInit {
   barChartOptions: ChartOptions = {
     responsive: true,
+    
   };
   barChartLabels: string[] = [];
   barChartType: ChartType = 'pie';

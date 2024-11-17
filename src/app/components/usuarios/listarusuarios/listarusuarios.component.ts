@@ -6,8 +6,8 @@ import { Usuarios } from '../../../models/usuarios';
 import { UsuariosService } from '../../../services/usuarios.service';
 import { MatInput, MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterLink } from '@angular/router';
-import {MatCardModule} from '@angular/material/card';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-listarusuarios',
@@ -18,22 +18,43 @@ import {MatCardModule} from '@angular/material/card';
   styleUrls: ['./listarusuarios.component.css'],
 })
 export class ListarusuariosComponent implements OnInit, AfterViewInit {
+  usuario: Usuarios | null = null;
   displayedColumns: string[] = ['c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7','accion01','accion02'];
   dataSource: MatTableDataSource<Usuarios> = new MatTableDataSource();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private uS: UsuariosService) { }
+  constructor(private uS: UsuariosService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    // Obtener datos de la API o servicio
-    this.uS.list().subscribe((data) => {
-      this.dataSource.data = data;
-    });
-    this.uS.getList().subscribe((data)=> {
+    const id = this.route.snapshot.paramMap.get('id');
+  
+    if (id) {
+      const idNumber = Number(id);  
+      if (!isNaN(idNumber)) {
+        this.uS.listId(idNumber).subscribe(
+          (data) => {
+            this.dataSource.data = [data]; 
+          },
+          (error) => {
+            console.error('Error al obtener usuario por id:', error);
+            alert('Error al obtener el usuario');
+          }
+        );
+      } else {
+        console.error('El id no es un número válido');
+        alert('El id proporcionado no es válido');
+      }
+    } else {
+      this.uS.list().subscribe((data) => {
+        this.dataSource.data = data;
+      });
+    }
+
+    this.uS.getList().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
-    })
+    });
   }
 
   eliminar(id: number) {

@@ -7,7 +7,6 @@ require 'vendor/autoload.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $correo = $_POST["correo"];
     
-    // Enviar un correo al usuario con el enlace para registrarse
     $mail = new PHPMailer(true);
     $mail->isSMTP();
     $mail->Host = 'smtp.gmail.com';

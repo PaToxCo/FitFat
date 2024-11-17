@@ -14,7 +14,7 @@
 <mat-toolbar color="primary" [@listAnimation] *ngIf="!currentRoute.includes('home')">
   <img src="assets/img/logofitfat.png" alt="Logo FitFat" class="logo">
   <button mat-button *ngIf="isUser() || isAdmin()" [matMenuTriggerFor]="menuHome" class="animated-button">
-    <fa-icon [icon]="faBowlFood" class="icon-spacing"></fa-icon> Home
+    <fa-icon [icon]="faHouse" class="icon-spacing"></fa-icon> Home
   </button>
   <button mat-button *ngIf="isAdmin()" [matMenuTriggerFor]="menuUsuario" class="animated-button">
     <fa-icon [icon]="faUser" class="icon-spacing"></fa-icon> Usuarios
@@ -85,6 +85,7 @@
 
 <mat-menu #menuRoles="matMenu">
   <button mat-menu-item routerLink="/roles">Listar</button>
+  <button mat-menu-item routerLink="/roles/nuevo">Nuevo</button>
 </mat-menu>
 
 <mat-menu #menuRecetas="matMenu">
@@ -123,10 +124,19 @@
     <mat-icon>bar_chart</mat-icon>Reporte Comida Favorita
   </button>
   <button mat-menu-item routerLink="/reportes/contar-usuarios" class="custom-menu-item">
-    <mat-icon>bar_chart</mat-icon>Reporte usuariosActivosInactivos
+    <mat-icon>bar_chart</mat-icon>Reporte usuarios Activos Inactivos
   </button>
   <button mat-menu-item routerLink="/reportes/usuarios-por-rol" class="custom-menu-item">
-    <mat-icon>bar_chart</mat-icon>Reporte usuariosPorRol
+    <mat-icon>bar_chart</mat-icon>Reporte usuarios Por Rol
+  </button>
+  <button mat-menu-item routerLink="/reportes/quantitydiet" class="custom-menu-item">
+    <mat-icon>bar_chart</mat-icon>Reporte dietas por usuario
+  </button>
+  <button mat-menu-item routerLink="/reportes/totalduration" class="custom-menu-item">
+    <mat-icon>bar_chart</mat-icon>Reporte duracion dietas por usuario
+  </button>
+  <button mat-menu-item routerLink="/reportes/totalduration" class="custom-menu-item">
+    <mat-icon>bar_chart</mat-icon>Reporte roles activos
   </button>
   <button mat-menu-item routerLink="/reportes/tipo-de-comida" class="custom-menu-item">
     <mat-icon>bar_chart</mat-icon>Reporte Tipo de comida
@@ -174,6 +184,8 @@
     Usuario:
     <span>{{ usuario || 'Cargando...' }}</span>
     </button>
+
+
 </mat-menu>
 
 <router-outlet></router-outlet>
