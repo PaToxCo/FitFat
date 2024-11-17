@@ -32,8 +32,8 @@ export class CantidadcomidasfavportipoComponent implements OnInit {
         {
           data: data.map((item) => item.cantidadComidasFavoritas),
           label: 'Cantidad de comidas favoritas por tipo',
-          backgroundColor: ['#22712e', '#8cdf99', '#30f54f'],
-          borderColor: '#22712e',
+          backgroundColor: ['#8a47eb', '#a163f8', '#b87ff5', '#cea2ff', '#e0c1ff'],
+          borderColor: '#8a47eb',
           borderWidth: 1
         },
       ];

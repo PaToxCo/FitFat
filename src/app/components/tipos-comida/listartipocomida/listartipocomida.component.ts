@@ -25,7 +25,7 @@ export class ListartipocomidaComponent {
   constructor(private tS: TipoComidaService) { }
   ngOnInit(): void {
     this.tS.list().subscribe((data) => {
-      this.datasource = new MatTableDataSource(data)
+      this.datasource.data = data;
     });
     this.tS.getList().subscribe((data)=> {
       this.datasource = new MatTableDataSource(data);

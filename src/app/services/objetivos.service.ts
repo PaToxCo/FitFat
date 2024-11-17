@@ -3,6 +3,8 @@ import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Objetivos } from '../models/objetivos';
 import { Subject } from 'rxjs';
+import { FechasObjetivosPorEstadoDTO } from '../models/dtos/FechasObjetivosPorEstadoDTO';
+import { DuracionObjetivosPorTipoDTO } from '../models/dtos/DuracionObjetivosPorTipoDTO';
 
 const base_url = environment.base;
 @Injectable({
@@ -23,7 +25,7 @@ export class ObjetivosService {
   getList() {
     return this.listaCambio.asObservable();
   }
-  setList(listaNueva:Objetivos[]) {
+  setList(listaNueva: Objetivos[]) {
     this.listaCambio.next(listaNueva);
   }
   delete(id: number) {
@@ -32,7 +34,15 @@ export class ObjetivosService {
   listId(id: number) {
     return this.http.get<Objetivos>(`${this.url}/${id}`);
   }
-  update(s:Objetivos){
-    return this.http.put(this.url,s);
+  update(s: Objetivos) {
+    return this.http.put(this.url, s);
+  }
+
+  obtenerFechasPorEstado() {
+    return this.http.get<FechasObjetivosPorEstadoDTO[]>(`${this.url}/fechas-por-estado`);
+  }
+
+  obtenerDuracionPorTipoObjetivo() {
+    return this.http.get<DuracionObjetivosPorTipoDTO[]>(`${this.url}/duracion-por-tipo`);
   }
 }

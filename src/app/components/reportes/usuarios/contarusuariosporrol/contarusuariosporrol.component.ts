@@ -14,7 +14,6 @@ Chart.register(...registerables);
   styleUrls: ['./contarusuariosporrol.component.css'],
 })
 export class ContarusuariosporrolComponent implements OnInit {
-  // Configuration of the chart
   barChartOptions: ChartOptions = {
     responsive: true,
   };
@@ -32,8 +31,8 @@ export class ContarusuariosporrolComponent implements OnInit {
         {
           data: data.map((item) => item.cantidadUsuarios),
           label: 'Usuarios por rol',
-          backgroundColor: ['#22712e', '#8cdf99', '#30f54f'],
-          borderColor: '#22712e',
+          backgroundColor: ['#8a47eb', '#a163f8', '#b87ff5', '#cea2ff', '#e0c1ff'],
+          borderColor: '#8a47eb',
           borderWidth: 1,
         },
       ];

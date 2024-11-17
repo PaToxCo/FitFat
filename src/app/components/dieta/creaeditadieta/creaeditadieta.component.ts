@@ -18,6 +18,7 @@ import { Usuarios } from '../../../models/usuarios';
 import { DietaService } from '../../../services/dieta.service';
 import { UsuariosService } from '../../../services/usuarios.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
@@ -29,7 +30,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     MatSelectModule,
     MatDatepickerModule,
     MatInputModule,
-    MatButtonModule,
+    MatButtonModule,CommonModule
   ],
   templateUrl: './creaeditadieta.component.html',
   styleUrl: './creaeditadieta.component.css'
@@ -79,6 +80,8 @@ export class CreaeditadietaComponent implements OnInit {
         this.dS.list().subscribe((data) => {
           this.dS.setList(data);
           this.router.navigate(['dietas']);
+          const mensaje = this.edicion ? 'Dieta actualizada exitosamente' : 'Dieta registrada exitosamente';
+           this.openSnackBar(mensaje, 'Cerrar');
         });
       });
     }
@@ -86,11 +89,11 @@ export class CreaeditadietaComponent implements OnInit {
   init() {
     if (this.edicion) {
       this.dS.listId(this.id).subscribe((data) => {
-        this.form = new FormGroup({
-          fcodigo: new FormControl(data.idDieta),
-          fnombre: new FormControl(data.nombre),
-          fduracion: new FormControl(data.duracion),
-          fusuario: new FormControl(data.usuario),
+        this.form = this.formBuilder.group({
+          fcodigo: [data.idDieta, Validators.required],
+          fnombre: [data.nombre, Validators.required],
+          fduracion: [data.duracion, Validators.required],
+          fusuario: [data.usuario.idUsuario, Validators.required],
         });
       });
     }

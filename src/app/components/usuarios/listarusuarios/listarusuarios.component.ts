@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, ChangeDetectionStrategy } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
@@ -7,13 +7,15 @@ import { UsuariosService } from '../../../services/usuarios.service';
 import { MatInput, MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
+import {MatCardModule} from '@angular/material/card';
 
 @Component({
   selector: 'app-listarusuarios',
   standalone: true,
-  imports: [MatTableModule, MatPaginatorModule, MatSortModule, MatInputModule, MatInput, MatIconModule, RouterLink],
+  imports: [MatTableModule, MatPaginatorModule, MatSortModule, MatInputModule, MatInput, MatIconModule, RouterLink, MatCardModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './listarusuarios.component.html',
-  styleUrls: ['./listarusuarios.component.css']
+  styleUrls: ['./listarusuarios.component.css'],
 })
 export class ListarusuariosComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7','accion01','accion02'];

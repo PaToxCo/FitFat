@@ -1,0 +1,22 @@
+<div class="login-box">
+  <div style="text-align: center;">
+    <img src="assets/img/logofitfat2.png" alt="Logo de la empresa">
+  </div>
+
+  <form>
+    <!-- Campo de usuario -->
+    <div class="user-box">
+      <input matInput type="text" name="usuario" required [(ngModel)]="usuario">
+      <label>Usuario</label>
+    </div>
+
+    <!-- Campo de contraseña -->
+    <div class="user-box">
+      <input matInput type="password" name="contrasena" required [(ngModel)]="contrasena">
+      <label>Contraseña</label>
+    </div>
+    
+    <!-- Botón de login -->
+    <button class="button type1" (click)="login()">Ingresar</button>
+  </form>
+</div>

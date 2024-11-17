@@ -9,6 +9,7 @@
         <mat-form-field appearance="fill">
           <mat-label>Descripción</mat-label>
           <input matInput formControlName="rdescripcion" required />
+          <mat-error *ngIf="form.get('rdescripcion')?.hasError('required')">La descripción es obligatoria</mat-error>
         </mat-form-field>
         <br />
   
@@ -20,6 +21,7 @@
             <mat-option [value]="food.idUsuario">{{ food.nombre }}</mat-option>
             }
           </mat-select>
+          <mat-error *ngIf="form.get('rusuario')?.hasError('required')">Por favor elija un usuario</mat-error>
         </mat-form-field>
       <br />
         

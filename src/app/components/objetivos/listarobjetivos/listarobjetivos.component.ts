@@ -33,7 +33,7 @@ export class ListarobjetivosComponent {
   constructor(private oS: ObjetivosService) {}
   ngOnInit(): void {
     this.oS.list().subscribe((data) => {
-      this.datasource = new MatTableDataSource(data);
+      this.datasource.data = data;
     });
     this.oS.getList().subscribe((data) => {
       this.datasource = new MatTableDataSource(data);

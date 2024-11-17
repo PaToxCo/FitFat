@@ -34,7 +34,7 @@ export class ListaralimentosComponent {
   constructor(private aS: AlimentosService) {}
   ngOnInit(): void {
     this.aS.list().subscribe((data) => {
-      this.datasource = new MatTableDataSource(data);
+      this.datasource.data = data;
     });
     this.aS.getList().subscribe((data) => {
       this.datasource = new MatTableDataSource(data);

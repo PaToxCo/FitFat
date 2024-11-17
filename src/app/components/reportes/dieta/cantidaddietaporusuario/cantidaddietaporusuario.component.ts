@@ -13,7 +13,15 @@ import { NgChartsModule } from 'ng2-charts';
 export class CantidaddietaporusuarioComponent implements OnInit {
   barChartOptions: ChartOptions = {
     responsive: true,
-    
+    scales: {
+      y: {
+        title: {
+          display: true,
+          text: 'Cantidad de dietas'
+        },
+        beginAtZero: true
+      }
+    },
   };
   barChartLabels: string[] = [];
   barChartType: ChartType = 'bar';
