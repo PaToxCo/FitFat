@@ -1,0 +1,14 @@
+<div>
+    <div class="container-title">
+      <p class="title">Cantidad de Tipos de Comida por Categoría</p>
+    </div>
+    <div class="chart-container" style="text-align: center">
+      <canvas baseChart
+              [datasets]="barChartData"
+              [labels]="barChartLabels"
+              [options]="barChartOptions"
+              [type]="barChartType"
+              [legend]="barChartLegend">
+      </canvas>
+    </div>
+  </div>

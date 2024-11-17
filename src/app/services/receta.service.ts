@@ -3,6 +3,8 @@ import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Receta } from '../models/receta';
 import { Subject } from 'rxjs';
+import { DescripcionLengthDTO } from '../models/dtos/DescripcionLengthDTO';
+import { RecetaCountDTO } from '../models/dtos/RecetaCountDTO';
 const base_url = environment.base;
 
 @Injectable({
@@ -35,4 +37,11 @@ export class RecetaService {
   update(r:Receta){
     return this.http.put(this.url,r);
   }
+  getDescripcionLengthByComida() {
+    return this.http.get<DescripcionLengthDTO[]>(`${this.url}/sumDescripcionLengthByComida`);
+  }
+  getRecetasCountByComida() {
+    return this.http.get<RecetaCountDTO[]>(`${this.url}/countByComida`);
+  }
+  
 }

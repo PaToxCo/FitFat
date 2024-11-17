@@ -26,7 +26,7 @@ export class ListarrecetaComponent implements OnInit {
   constructor(private rS: RecetaService) { }
   ngOnInit(): void {
     this.rS.list().subscribe((data) => {
-      this.datasource = new MatTableDataSource(data)
+      this.datasource.data = data;
     });
     this.rS.getList().subscribe((data) => {
       this.datasource = new MatTableDataSource(data);

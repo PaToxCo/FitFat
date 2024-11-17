@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Alimentos } from '../models/alimentos';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { TotalAlimentosDTO } from '../models/dtos/TotalAlimentosDTO';
+import { TotalCaloriasDTO } from '../models/dtos/TotalCaloriasDTO';
 
 const base_url = environment.base;
 @Injectable({
@@ -34,5 +36,12 @@ export class AlimentosService {
   }
   update(s:Alimentos){
     return this.http.put(this.url,s);
+  }
+  totalAlimentos(): Observable<TotalAlimentosDTO[]> {
+    return this.http.get<TotalAlimentosDTO[]>(`${this.url}/total-alimentos`);
+  }
+
+  totalCalorias(): Observable<TotalCaloriasDTO[]> {
+    return this.http.get<TotalCaloriasDTO[]>(`${this.url}/total-calorias`);
   }
 }

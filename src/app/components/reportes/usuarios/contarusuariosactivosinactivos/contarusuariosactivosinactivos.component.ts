@@ -33,8 +33,8 @@ export class ContarusuariosactivosinactivosComponent implements OnInit {
         {
           data: data.map((item) => item.cantidad),
           label: 'Usuarios activos/inactivos',
-          backgroundColor: ['#22712e', '#8cdf99'],
-          borderColor: '#22712e',
+          backgroundColor: ['#8a47eb', '#a163f8', '#b87ff5', '#cea2ff', '#e0c1ff'],
+          borderColor: '#8a47eb',
           borderWidth: 1,
         },
       ];

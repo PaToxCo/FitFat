@@ -38,11 +38,15 @@ export class ListardietaComponent {
   constructor(private dS: DietaService, private snackBar: MatSnackBar) {}
   ngOnInit(): void {
     this.dS.list().subscribe((data) => {
+
+      this.datasource.data = data;
+
       this.datasource = new MatTableDataSource(data);
       this.contador = data.length;
       if (this.contador == 0) {
         this.showNoDietasSnackbar();
       }
+
     });
     this.dS.getList().subscribe((data) => {
       this.datasource = new MatTableDataSource(data);

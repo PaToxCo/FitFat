@@ -11,46 +11,57 @@
     <div class="text">Loading...</div>
   </div>
 </div>
-
-<mat-toolbar color="primary" @listAnimation>
+<mat-toolbar color="primary" [@listAnimation] *ngIf="!currentRoute.includes('home')">
   <img src="assets/img/logofitfat.png" alt="Logo FitFat" class="logo">
-  <button mat-button [matMenuTriggerFor]="menuUsuario" class="animated-button">
+  <button mat-button *ngIf="isUser() || isAdmin()" [matMenuTriggerFor]="menuHome" class="animated-button">
+    <fa-icon [icon]="faBowlFood" class="icon-spacing"></fa-icon> Home
+  </button>
+  <button mat-button *ngIf="isAdmin()" [matMenuTriggerFor]="menuUsuario" class="animated-button">
     <fa-icon [icon]="faUser" class="icon-spacing"></fa-icon> Usuarios
   </button>
-  <button mat-button [matMenuTriggerFor]="menuTipoComida" class="animated-button">
+  <button mat-button *ngIf="isUser() || isAdmin()" [matMenuTriggerFor]="menuTipoComida" class="animated-button">
     <fa-icon [icon]="faBowlFood" class="icon-spacing"></fa-icon> Tipos Comida
   </button>
-  <button mat-button [matMenuTriggerFor]="menuDieta" class="animated-button">
+  <button mat-button *ngIf="isUser() || isAdmin()" [matMenuTriggerFor]="menuDieta" class="animated-button">
     <fa-icon [icon]="faEgg" class="icon-spacing"></fa-icon> Dietas
   </button>
-  <button mat-button [matMenuTriggerFor]="menuControl" class="animated-button">
+  <button mat-button *ngIf="isUser() || isAdmin()" [matMenuTriggerFor]="menuControl" class="animated-button">
     <fa-icon [icon]="faDumbbell" class="icon-spacing"></fa-icon> Control
   </button>
-  <button mat-button [matMenuTriggerFor]="menuRoles" class="animated-button">
+  <button mat-button *ngIf="isAdmin()" [matMenuTriggerFor]="menuRoles" class="animated-button">
     <fa-icon [icon]="faUser" class="icon-spacing"></fa-icon> Roles
   </button>
-  <button mat-button [matMenuTriggerFor]="menuRecetas" class="animated-button">
+  <button mat-button *ngIf="isUser() || isAdmin()" [matMenuTriggerFor]="menuRecetas" class="animated-button">
     <fa-icon [icon]="faUtensils" class="icon-spacing"></fa-icon> Recetas
   </button>
-  <button mat-button [matMenuTriggerFor]="menuAlimentos" class="animated-button">
+  <button mat-button *ngIf="isUser() || isAdmin()" [matMenuTriggerFor]="menuAlimentos" class="animated-button">
     <fa-icon [icon]="faCarrot" class="icon-spacing"></fa-icon> Alimentos
   </button>
-  <button mat-button [matMenuTriggerFor]="menuComidas" class="animated-button">
+  <button mat-button *ngIf="isUser() || isAdmin()" [matMenuTriggerFor]="menuComidas" class="animated-button">
     <fa-icon [icon]="faBacon" class="icon-spacing"></fa-icon> Comidas
   </button>
-  <button mat-button [matMenuTriggerFor]="menuConsultas" class="animated-button">
+  <button mat-button *ngIf="isUser() || isAdmin()" [matMenuTriggerFor]="menuConsultas" class="animated-button">
     <fa-icon [icon]="faQuestion" class="icon-spacing"></fa-icon> Consulta
   </button>
-  <button mat-button [matMenuTriggerFor]="menuRespuesta" class="animated-button">
+  <button mat-button *ngIf="isUser() || isAdmin()" [matMenuTriggerFor]="menuRespuesta" class="animated-button">
     <fa-icon [icon]="faComment" class="icon-spacing"></fa-icon> Respuesta
   </button>
-  <button mat-button [matMenuTriggerFor]="menuObjetivos" class="animated-button">
+  <button mat-button *ngIf="isUser() || isAdmin()" [matMenuTriggerFor]="menuObjetivos" class="animated-button">
     <fa-icon [icon]="faMedal" class="icon-spacing"></fa-icon> Objetivos
   </button>
-  <button mat-button [matMenuTriggerFor]="menuReportes" class="animated-button">
+  <button mat-button *ngIf="isUser() || isAdmin()" [matMenuTriggerFor]="menuReportes" class="animated-button">
     <fa-icon [icon]="faCode" class="icon-spacing"></fa-icon> Reportes
   </button>
+  <div class="right-menu">
+    <button mat-button [matMenuTriggerFor]="menuSalir" style="color: white">
+      <mat-icon>person</mat-icon>Usuario
+    </button>
+  </div>
 </mat-toolbar>
+
+<mat-menu #menuHome="matMenu">
+  <button mat-menu-item routerLink="/homes">Home</button>
+</mat-menu>
 
 <mat-menu #menuUsuario="matMenu">
   <button mat-menu-item routerLink="/usuarios">Listar</button>
@@ -127,8 +138,53 @@
   <button mat-menu-item routerLink="/reportes/totalduration" class="custom-menu-item">
     <mat-icon>bar_chart</mat-icon>Reporte roles activos
   </button>
+  <button mat-menu-item routerLink="/reportes/tipo-de-comida" class="custom-menu-item">
+    <mat-icon>bar_chart</mat-icon>Reporte Tipo de comida
+  </button>
+  <button mat-menu-item routerLink="/reportes/obtener-fecha-por-estado" class="custom-menu-item">
+    <mat-icon>bar_chart</mat-icon>Reporte Fecha por estado
+  </button>
+  <button mat-menu-item routerLink="/reportes/duracion-de-fecha-por-tipo" class="custom-menu-item">
+    <mat-icon>bar_chart</mat-icon>Reporte Duracion de fecha por tipo
+  </button>
+  <button mat-menu-item routerLink="/reportes/contar-recetas-por-comida" class="custom-menu-item">
+    <mat-icon>bar_chart</mat-icon>Reporte Contar Recetas por Comida
+  </button>
+  <button mat-menu-item routerLink="/reportes/suma-descrip-de-receta-de-comida" class="custom-menu-item">
+    <mat-icon>pie_chart</mat-icon>Reporte Suma de logintud de descripciones
+  </button>
+  <button mat-menu-item routerLink="/reportes/contar-control-por-dieta" class="custom-menu-item">
+    <mat-icon>bar_chart</mat-icon>Reporte Contar Control por Dieta
+  </button>
+  <button mat-menu-item routerLink="/reportes/contar-control-por-genero" class="custom-menu-item">
+    <mat-icon>pie_chart</mat-icon>Reporte Contar Control por Genero
+  </button>
+  <button mat-menu-item routerLink="/reportes/contar-alimentos-por-dieta" class="custom-menu-item">
+    <mat-icon>bar_chart</mat-icon>Reporte Contar Alimentos por Dieta
+  </button>
+  <button mat-menu-item routerLink="/reportes/sumar-total-calorias-por-dieta" class="custom-menu-item">
+    <mat-icon>pie_chart</mat-icon>Reporte Sumar total calorias por Dieta
+  </button>
 </mat-menu>
-
+<mat-menu #menuSalir="matMenu">
+  <button
+    mat-menu-item
+    routerLink="/login"
+    (click)="cerrar()"
+    class="custom-menu-item"
+  >
+    <mat-icon>logout</mat-icon>
+    <span>Cerrar sesión</span>
+  </button>
+  <button mat-menu-item class="custom-menu-item">
+    Rol:
+    <span>{{ role }}</span>
+  </button>
+  <button mat-menu-item class="custom-menu-item">
+    Usuario:
+    <span>{{ usuario || 'Cargando...' }}</span>
+    </button>
+</mat-menu>
 
 <router-outlet></router-outlet>
 
