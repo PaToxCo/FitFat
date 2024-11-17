@@ -15,6 +15,7 @@ Chart.register(...registerables);
   styleUrls: ['./contarusuariosactivosinactivos.component.css'],
 })
 export class ContarusuariosactivosinactivosComponent implements OnInit {
+
   barChartOptions: ChartOptions = {
     responsive: true,
   };

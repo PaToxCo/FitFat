@@ -85,6 +85,7 @@
 
 <mat-menu #menuRoles="matMenu">
   <button mat-menu-item routerLink="/roles">Listar</button>
+  <button mat-menu-item routerLink="/roles/nuevo">Nuevo</button>
 </mat-menu>
 
 <mat-menu #menuRecetas="matMenu">
@@ -123,10 +124,19 @@
     <mat-icon>bar_chart</mat-icon>Reporte Comida Favorita
   </button>
   <button mat-menu-item routerLink="/reportes/contar-usuarios" class="custom-menu-item">
-    <mat-icon>bar_chart</mat-icon>Reporte usuariosActivosInactivos
+    <mat-icon>bar_chart</mat-icon>Reporte usuarios Activos Inactivos
   </button>
   <button mat-menu-item routerLink="/reportes/usuarios-por-rol" class="custom-menu-item">
-    <mat-icon>bar_chart</mat-icon>Reporte usuariosPorRol
+    <mat-icon>bar_chart</mat-icon>Reporte usuarios Por Rol
+  </button>
+  <button mat-menu-item routerLink="/reportes/quantitydiet" class="custom-menu-item">
+    <mat-icon>bar_chart</mat-icon>Reporte dietas por usuario
+  </button>
+  <button mat-menu-item routerLink="/reportes/totalduration" class="custom-menu-item">
+    <mat-icon>bar_chart</mat-icon>Reporte duracion dietas por usuario
+  </button>
+  <button mat-menu-item routerLink="/reportes/totalduration" class="custom-menu-item">
+    <mat-icon>bar_chart</mat-icon>Reporte roles activos
   </button>
   <button mat-menu-item routerLink="/reportes/tipo-de-comida" class="custom-menu-item">
     <mat-icon>bar_chart</mat-icon>Reporte Tipo de comida

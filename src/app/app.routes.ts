@@ -22,6 +22,7 @@ import { ReportesComponent } from './components/reportes/reportes.component';
 import { SumacaloriasusuarioComponent } from './components/reportes/comida/sumacaloriasusuario/sumacaloriasusuario.component';
 import { ContarusuariosporrolComponent } from './components/reportes/usuarios/contarusuariosporrol/contarusuariosporrol.component';
 import { ContarusuariosactivosinactivosComponent } from './components/reportes/usuarios/contarusuariosactivosinactivos/contarusuariosactivosinactivos.component';
+
 import { ContarporcategoriaComponent } from './components/reportes/tipo-comida/contarporcategoria/contarporcategoria.component';
 import { ObtenerFechasPorEstadoComponent } from './components/reportes/objetivos/obtenerfechasporestado/obtenerfechasporestado.component';
 import { ObtenerDuracionPorTipoDeObjetivoComponent } from './components/reportes/objetivos/obtenerduracionportipodeobjetivo/obtenerduracionportipodeobjetivo.component';
@@ -36,6 +37,13 @@ import { seguridadGuard } from './guard/seguridad.guard';
 import { HomeComponent } from './components/home/home.component';
 import { ListarusuariosComponent } from './components/usuarios/listarusuarios/listarusuarios.component';
 import { BienvenidaComponent } from './components/bienvenida/bienvenida.component';
+
+import { CreaeditarolComponent } from './components/rol/creaeditarol/creaeditarol.component';
+import { CantidaddietaporusuarioComponent } from './components/reportes/dieta/cantidaddietaporusuario/cantidaddietaporusuario.component';
+import { DuraciondietasporusuarioComponent } from './components/reportes/dieta/duraciondietasporusuario/duraciondietasporusuario.component';
+import { RolesactivosComponent } from './components/reportes/rol/rolesactivos/rolesactivos.component';
+
+
 
 export const routes: Routes = [
     {
@@ -97,7 +105,18 @@ export const routes: Routes = [
     },
     {
         path: 'roles', component: RolComponent,
+
         canActivate: [seguridadGuard],
+
+        children:[
+            {
+                path:'nuevo', component: CreaeditarolComponent,
+            },
+            {
+                path: 'ediciones/:id', component: CreaeditarolComponent,
+            },
+        ]
+
     },
     {
         path: 'control', component: ControlComponent,
@@ -180,6 +199,7 @@ export const routes: Routes = [
             path:'usuarios-por-rol',component:ContarusuariosporrolComponent,
           },
           {
+
             path:'tipo-de-comida',component:ContarporcategoriaComponent,
           },
           {
@@ -209,5 +229,17 @@ export const routes: Routes = [
           
         ],
         canActivate: [seguridadGuard],
+
+            path:'quantitydiet', component:CantidaddietaporusuarioComponent,
+          },
+          {
+            path:'totalduration', component:DuraciondietasporusuarioComponent,
+          },
+          {
+            path:'activerol', component:RolesactivosComponent,
+          }
+            
+        ]
+
       },
 ];
