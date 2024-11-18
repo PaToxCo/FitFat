@@ -1,1 +1,17 @@
-<p>totalrespuestas works!</p>
+<div>
+    <div class="container-title">
+        <p class="title">Duración de dietas por usuario</p>
+      </div>
+    <div class="chart-container" style="text-align: center">
+      <canvas
+        baseChart
+        [datasets]="barChartData"
+        [labels]="barChartLabels"
+        [options]="barChartOptions"
+        [legend]="barChartLegend"
+        [type]="barChartType"
+      >
+      </canvas>
+    </div>
+  </div>
+  

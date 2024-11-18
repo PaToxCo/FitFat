@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Respuesta } from '../models/respuesta';
 import { Observable, Subject } from 'rxjs';
+import { TotalRespuestasDTO } from '../models/dtos/TotalRespuestasDTO';
 
 const base_url = environment.base;
 
@@ -38,4 +39,7 @@ export class RespuestaService {
   listarPorConsulta(idConsulta: number): Observable<Respuesta[]> {
     return this.http.get<Respuesta[]>(`${this.url}/consulta/${idConsulta}`);
   }
+  totalrespuestas(): Observable<TotalRespuestasDTO[]> {
+    return this.http.get<TotalRespuestasDTO[]>(`${this.url}/totalRespuestas`); }
 }
+

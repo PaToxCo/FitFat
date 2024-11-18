@@ -105,10 +105,12 @@
 
 <mat-menu #menuConsultas="matMenu">
   <button mat-menu-item routerLink="/consulta">Listar</button>
+  <button mat-menu-item routerLink="/consulta/nuevo">Nuevo</button>
 </mat-menu>
 
 <mat-menu #menuRespuesta="matMenu">
   <button mat-menu-item routerLink="/respuesta">Listar</button>
+  <button mat-menu-item routerLink="/respuesta/nuevo">Nuevo</button>
 </mat-menu>
 
 <mat-menu #menuObjetivos="matMenu">
@@ -164,6 +166,9 @@
   </button>
   <button mat-menu-item routerLink="/reportes/sumar-total-calorias-por-dieta" class="custom-menu-item">
     <mat-icon>pie_chart</mat-icon>Reporte Sumar total calorias por Dieta
+  </button>
+  <button mat-menu-item routerLink="/reportes/totalRespuestas" class="custom-menu-item">
+    <mat-icon>bar_chart</mat-icon>Reporte Tota de Respuestas
   </button>
 </mat-menu>
 <mat-menu #menuSalir="matMenu">

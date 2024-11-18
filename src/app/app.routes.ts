@@ -43,6 +43,7 @@ import { DuraciondietasporusuarioComponent } from './components/reportes/dieta/d
 import { CaloriasporalimentoComponent } from './components/reportes/alimentos/caloriasporalimento/caloriasporalimento.component';
 import { CarbohidratosporalimentoComponent } from './components/reportes/alimentos/carbohidratosporalimento/carbohidratosporalimento.component';
 import { GrasasporalimentoComponent } from './components/reportes/alimentos/grasasporalimento/grasasporalimento.component';
+import { TotalrespuestasComponent } from './components/reportes/respuesta/totalrespuestas/totalrespuestas.component';
 
 
 export const routes: Routes = [
@@ -168,10 +169,26 @@ export const routes: Routes = [
     },
     {
         path: 'consulta', component: ConsultaComponent,
+        children:[
+          {
+              path:'nuevo',component: CreaeditaobjetivosComponent
+          },
+          {
+              path: 'ediciones/:id', component: CreaeditaobjetivosComponent,
+          },
+      ],
         canActivate: [seguridadGuard],
     },
     {
         path: 'respuesta', component: RespuestaComponent,
+        children:[
+          {
+              path:'nuevo',component: CreaeditaobjetivosComponent
+          },
+          {
+              path: 'ediciones/:id', component: CreaeditaobjetivosComponent,
+          },
+      ],
         canActivate: [seguridadGuard],
     },
     {
@@ -239,6 +256,9 @@ export const routes: Routes = [
           },
           {
             path:'grasas', component:GrasasporalimentoComponent,
+          },
+          {
+            path:'totalRespuestas', component:TotalrespuestasComponent,
           },
         ],
           canActivate: [seguridadGuard],
