@@ -6,12 +6,12 @@
       <form [formGroup]="form" (submit)="insertar()">
         <mat-form-field class="example-full-width">
           <mat-label>Descripción</mat-label>
-          <input matInput placeholder="Descripción del objetivo" formControlName="fdescripcion">
+          <input matInput placeholder="Descripción del objetivo" formControlName="fdescripcion" required>
         </mat-form-field>
         <br />
         <mat-form-field>
           <mat-label>Tipo</mat-label>
-          <mat-select formControlName="ftipo">
+          <mat-select formControlName="ftipo" required>
             <mat-option *ngFor="let tipo of listaTipoObjetivo" [value]="tipo.value">
               {{ tipo.viewValue }}
             </mat-option>
@@ -31,12 +31,12 @@
         <br />
         <mat-form-field>
           <mat-label>Estado</mat-label>
-          <input matInput placeholder="Estado del objetivo" formControlName="festado">
+          <input matInput placeholder="Estado del objetivo" formControlName="festado" required>
         </mat-form-field>
         <br />
         <mat-form-field>
           <mat-label>Usuario</mat-label>
-          <mat-select formControlName="fusuario">
+          <mat-select formControlName="fusuario" required>
             <mat-option *ngFor="let usuario of listaUsuario" [value]="usuario.idUsuario">
               {{ usuario.nombre }}
             </mat-option>

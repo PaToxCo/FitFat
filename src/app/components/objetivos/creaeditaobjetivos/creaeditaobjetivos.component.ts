@@ -119,7 +119,7 @@ export class CreaeditaobjetivosComponent implements OnInit{
         this.oS.update(this.objetivo).subscribe((data) => {
           this.oS.list().subscribe((data) => {
             this.oS.setList(data);
-            this.openSnackBar('Objetivo actualizado correctamente', 'Cerrar'); // Mensaje de éxito
+            this.openSnackBar('Objetivo actualizado con éxito', 'Cerrar'); // Mensaje de éxito
             this.router.navigate(['objetivos']);
           });
         });
@@ -128,7 +128,7 @@ export class CreaeditaobjetivosComponent implements OnInit{
         this.oS.insert(this.objetivo).subscribe((data) => {
           this.oS.list().subscribe((data) => {
             this.oS.setList(data);
-            this.openSnackBar('Objetivo registrado correctamente', 'Cerrar'); // Mensaje de éxito
+            this.openSnackBar('Objetivo registrado con éxito', 'Cerrar'); // Mensaje de éxito
             this.router.navigate(['objetivos']);
           });
         });

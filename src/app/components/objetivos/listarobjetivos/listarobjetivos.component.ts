@@ -39,7 +39,7 @@ export class ListarobjetivosComponent {
     this.oS.list().subscribe((data) => {
       this.datasource.data = data;
       this.datasource = new MatTableDataSource(data);
-      if (data.length === 0) {
+      if (data.length == 0) {
         this.snackBar.open('No hay objetivos registrados', 'Cerrar', {
           duration: 5000,
         });
@@ -55,7 +55,7 @@ export class ListarobjetivosComponent {
         this.oS.setList(data);
         this.showDeleteSnackbar();
         if (data.length == 0) {
-          this.showNoDietasSnackbar();
+          this.showNoObjetivosSnackbar();
         }
       });
     });
@@ -69,7 +69,7 @@ export class ListarobjetivosComponent {
     const filterValue = (event.target as HTMLInputElement).value;
     this.datasource.filter = filterValue.trim().toLowerCase();
   }
-  showNoDietasSnackbar() {
+  showNoObjetivosSnackbar() {
     this.snackBar.open('No hay Objetivos registrados', 'Cerrar', {
       duration: 5000,
       verticalPosition: 'bottom', // Posición en la pantalla

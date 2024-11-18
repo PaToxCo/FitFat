@@ -9,42 +9,42 @@
         <!-- Campo para el nombre -->
         <mat-form-field>
           <mat-label>Nombre</mat-label>
-          <input matInput placeholder="Ingrese el nombre" formControlName="fnombre" />
+          <input matInput placeholder="Ingrese el nombre" formControlName="fnombre" required />
         </mat-form-field>
         <br />
   
         <!-- Campo para calorías -->
         <mat-form-field>
           <mat-label>Calorías</mat-label>
-          <input matInput type="number" placeholder="Ingrese las calorías" formControlName="fcalorias" />
+          <input matInput type="number" placeholder="Ingrese las calorías" formControlName="fcalorias" required />
         </mat-form-field>
         <br />
   
         <!-- Campo para proteínas -->
         <mat-form-field>
           <mat-label>Proteínas</mat-label>
-          <input matInput type="number" placeholder="Ingrese las proteínas" formControlName="fproteinas" />
+          <input matInput type="number" placeholder="Ingrese las proteínas" formControlName="fproteinas" required />
         </mat-form-field>
         <br />
   
         <!-- Campo para carbohidratos -->
         <mat-form-field>
           <mat-label>Carbohidratos</mat-label>
-          <input matInput type="number" placeholder="Ingrese los carbohidratos" formControlName="fcarbohidratos" />
+          <input matInput type="number" placeholder="Ingrese los carbohidratos" formControlName="fcarbohidratos" required />
         </mat-form-field>
         <br />
   
         <!-- Campo para grasas -->
         <mat-form-field>
           <mat-label>Grasas</mat-label>
-          <input matInput type="number" placeholder="Ingrese las grasas" formControlName="fgrasa" />
+          <input matInput type="number" placeholder="Ingrese las grasas" formControlName="fgrasa" required />
         </mat-form-field>
         <br />
   
         <!-- Selector de dieta -->
         <mat-form-field>
           <mat-label>Dieta</mat-label>
-          <mat-select formControlName="fdieta">
+          <mat-select formControlName="fdieta" required>
             <mat-option *ngFor="let food of listaDieta" [value]="food.idDieta">
               {{ food.nombre }}
             </mat-option>
@@ -55,7 +55,7 @@
         <!-- Selector de receta -->
         <mat-form-field>
           <mat-label>Receta</mat-label>
-          <mat-select formControlName="freceta">
+          <mat-select formControlName="freceta" required>
             <mat-option *ngFor="let food of listaReceta" [value]="food.idReceta">
               {{ food.nombre }}
             </mat-option>
