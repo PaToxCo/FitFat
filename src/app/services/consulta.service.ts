@@ -9,12 +9,18 @@ const base_url = environment.base;
   providedIn: 'root'
 })
 export class ConsultaService {
-
   private url = `${base_url}/consulta`;
-
-  constructor(private http: HttpClient) {}
-
+  constructor(private http: HttpClient) { }
   list() {
-    return this.http.get<Consulta[]>(this.url);
+    return this.http.get<Consulta[]>(this.url+"/listar");
+  }
+  post(c:Consulta){
+    return this.http.post<Consulta>(this.url+"/agregar",c);
+  }
+  delete(id:number){
+    return this.http.delete<Consulta>(this.url+"/delete"+"/"+id.toString());
+  }
+  modificar(c:Consulta){
+  return this.http.put<Consulta>(this.url+"/actualizar", c);
   }
 }
