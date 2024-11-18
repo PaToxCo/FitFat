@@ -7,6 +7,8 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatInput, MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-listartipocomida',
@@ -22,20 +24,32 @@ export class ListartipocomidaComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private tS: TipoComidaService) { }
+  constructor(
+    private tS: TipoComidaService,
+    private snackBar: MatSnackBar) { }
   ngOnInit(): void {
     this.tS.list().subscribe((data) => {
       this.datasource.data = data;
+      this.datasource = new MatTableDataSource(data);
+      if (data.length == 0) {
+        this.snackBar.open('No hay Tipo comida registrados', 'Cerrar', {
+          duration: 5000,
+        });
+      }
     });
     this.tS.getList().subscribe((data)=> {
       this.datasource = new MatTableDataSource(data);
-    })
+    });
   }
 
   eliminar(id: number) {
     this.tS.delete(id).subscribe((data) => {
       this.tS.list().subscribe((data) => {
         this.tS.setList(data);
+        this.showDeleteSnackbar();
+        if (data.length == 0) {
+          this.showNoTipoComoidaSnackbar();
+        }
       });
     });
   }
@@ -47,5 +61,19 @@ export class ListartipocomidaComponent {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.datasource.filter = filterValue.trim().toLowerCase();
+  }
+  showNoTipoComoidaSnackbar() {
+    this.snackBar.open('No hay alimentos registrados', 'Cerrar', {
+      duration: 5000,
+      verticalPosition: 'bottom', // Posición en la pantalla
+      horizontalPosition: 'center',
+    });
+  }
+  showDeleteSnackbar() {
+    this.snackBar.open('Alimento eliminado correctamente', 'Cerrar', {
+      duration: 5000,
+      verticalPosition: 'bottom', // Posición en la pantalla
+      horizontalPosition: 'center',
+    });
   }
 }
