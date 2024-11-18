@@ -77,7 +77,7 @@ export class ListarobjetivosComponent {
     });
   }
   showDeleteSnackbar() {
-    this.snackBar.open('Objetivo eliminado correctamente', 'Cerrar', {
+    this.snackBar.open('Objetivo eliminado con éxito', 'Cerrar', {
       duration: 5000,
       verticalPosition: 'bottom', // Posición en la pantalla
       horizontalPosition: 'center',
