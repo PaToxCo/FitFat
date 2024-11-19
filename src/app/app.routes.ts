@@ -52,209 +52,222 @@ import { GrasasporalimentoComponent } from './components/reportes/alimentos/gras
 
 
 export const routes: Routes = [
-    {
-        path: '',
-        redirectTo: 'homes',
-        pathMatch: 'full',
+  {
+    path: '',
+    redirectTo: 'homes',
+    pathMatch: 'full',
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
+  {
+    path: 'bienvenida',
+    component: BienvenidaComponent,
+    canActivate: [seguridadGuard],
+  },
+  {
+    path: 'homes',
+    component: HomeComponent,
+  },
+  {
+    path: 'usuarios',
+    component: UsuariosComponent,
+    canActivate: [seguridadGuard],
+    children: [
+      {
+        path: 'user-details/:username', component: ListarusuariosComponent
       },
       {
-        path: 'login',
-        component: LoginComponent,
+        path: 'nuevo', component: CreaeditausuariosComponent
       },
       {
-        path: 'bienvenida',
-        component: BienvenidaComponent,
-        canActivate: [seguridadGuard],
+        path: 'ediciones/:id', component: CreaeditausuariosComponent,
+      },
+    ],
+
+  },
+  {
+    path: 'tipos-comida',
+    component: TiposComidaComponent,
+    canActivate: [seguridadGuard],
+    children: [
+      {
+        path: 'nuevo', component: CreaeditatipoComidasComponent
       },
       {
-        path: 'homes',
-        component: HomeComponent,
+        path: 'ediciones/:id', component: CreaeditatipoComidasComponent,
       },
-    {
-        path: 'usuarios', component: UsuariosComponent,
-        children:[
-            {
-                path: 'user-details/:username',component: ListarusuariosComponent
-            },
-            {
-                path:'nuevo',component: CreaeditausuariosComponent
-            },
-            {
-                path: 'ediciones/:id', component: CreaeditausuariosComponent,
-            },
-        ],
-        canActivate: [seguridadGuard],
-    },
-    {
-        path: 'tipos-comida', component: TiposComidaComponent,
-        children:[
-            {
-                path:'nuevo',component: CreaeditatipoComidasComponent
-            },
-            {
-                path: 'ediciones/:id', component: CreaeditatipoComidasComponent,
-            },
-        ],
-        canActivate: [seguridadGuard],
-    },
-    {
-        path: 'dietas', component: DietaComponent,
-        children:[
-            {
-                path:'nuevo',component: CreaeditadietaComponent
-            },
-            {
-                path: 'ediciones/:id', component: CreaeditadietaComponent,
-            },
-        ],
-        canActivate: [seguridadGuard],
-    },
-    {
-        path: 'roles', component: RolComponent,
+    ],
 
-        canActivate: [seguridadGuard],
-
-        children:[
-            {
-                path:'nuevo', component: CreaeditarolComponent,
-            },
-            {
-                path: 'ediciones/:id', component: CreaeditarolComponent,
-            },
-        ]
-
-    },
-    {
-        path: 'control', component: ControlComponent,
-        children:[
-            {
-                path:'nuevo',component: CreaeditacontrolComponent
-            },
-            {
-                path: 'ediciones/:id', component: CreaeditacontrolComponent,
-            },
-        ],
-        canActivate: [seguridadGuard],
-    },
-    {
-        path: 'recetas', component: RecetaComponent,
-        children:[
-            {
-                path:'nuevo',component: CreaeditarecetaComponent
-            },
-            {
-                path: 'ediciones/:id', component: CreaeditarecetaComponent,
-            },
-        ],
-        canActivate: [seguridadGuard],
-    },
-    {
-        path: 'alimentos', component: AlimentosComponent,
-        children:[
-            {
-                path:'nuevo',component: CreaeditaalimentosComponent
-            },
-            {
-                path: 'ediciones/:id', component: CreaeditaalimentosComponent,
-            },
-        ],
-        canActivate: [seguridadGuard],
-    },
-    {
-        path: 'comidas', component: ComidaComponent,
-        children:[
-            {
-                path:'nuevo',component: CreaeditacomidaComponent
-            },
-            {
-                path: 'ediciones/:id', component: CreaeditacomidaComponent,
-            },
-        ],
-        canActivate: [seguridadGuard],
-    },
-    {
-        path: 'consulta', component: ConsultaComponent,
-        canActivate: [seguridadGuard],
-    },
-    {
-        path: 'respuesta', component: RespuestaComponent,
-        canActivate: [seguridadGuard],
-    },
-    {
-        path: 'objetivos', component: ObjetivosComponent,
-        children:[
-            {
-                path:'nuevo',component: CreaeditaobjetivosComponent
-            },
-            {
-                path: 'ediciones/:id', component: CreaeditaobjetivosComponent,
-            },
-        ],
-        canActivate: [seguridadGuard],
-    },
-    {
-        path:'reportes',component:ReportesComponent,
-        children:[
-          {
-            path:'comidafavorita',component:SumacaloriasusuarioComponent,
-          },
-          {
-            path:'contar-usuarios',component:ContarusuariosactivosinactivosComponent,
-          },
-          {
-            path:'usuarios-por-rol',component:ContarusuariosporrolComponent,
-          },
-          {
-
-            path:'tipo-de-comida',component:ContarporcategoriaComponent,
-          },
-          {
-            path:'obtener-fecha-por-estado',component:ObtenerFechasPorEstadoComponent,
-          },
-          {
-            path:'duracion-de-fecha-por-tipo',component:ObtenerDuracionPorTipoDeObjetivoComponent,
-          },
-          {
-            path:'suma-descrip-de-receta-de-comida',component:SumadescripcionderecetaporcomidaComponent,
-          },
-          {
-            path:'contar-recetas-por-comida',component:ContarrecetaporcomidaComponent,
-          },
-          {
-            path:'contar-control-por-genero',component:ContarcontrolporgeneroComponent,
-          },
-          {
-            path:'contar-control-por-dieta',component:ContarcontrolpordietaComponent,
-          },
-          {
-            path:'contar-alimentos-por-dieta',component:ContaralimentospordietaComponent,
-          },
-          {
-            path:'sumar-total-calorias-por-dieta',component:SumartotalcaloriasdedietaComponent,
-          }
-          
-        ],
-        canActivate: [seguridadGuard],
-
-            path:'quantitydiet', component:CantidaddietaporusuarioComponent,
-          },
-          {
-            path:'totalduration', component:DuraciondietasporusuarioComponent,
-          },
-          {
-            path:'activerol', component:RolesactivosComponent,
-          }
-
-            path:'calorias', component:CaloriasporalimentoComponent,
-          },
-          {
-            path:'carbohidratos', component:CarbohidratosporalimentoComponent,
-          },
-          {
-            path:'grasas', component:GrasasporalimentoComponent,
-          },
-         
-        ]
-
+  },
+  {
+    path: 'dietas',
+    component: DietaComponent,
+    canActivate: [seguridadGuard],
+    children: [
+      {
+        path: 'nuevo', component: CreaeditadietaComponent
       },
+      {
+        path: 'ediciones/:id', component: CreaeditadietaComponent,
+      },
+    ],
+
+  },
+  {
+    path: 'roles',
+    component: RolComponent,
+
+    canActivate: [seguridadGuard],
+
+    children: [
+      {
+        path: 'nuevo', component: CreaeditarolComponent,
+      },
+      {
+        path: 'ediciones/:id', component: CreaeditarolComponent,
+      },
+    ]
+
+  },
+  {
+    path: 'control',
+    component: ControlComponent,
+    canActivate: [seguridadGuard],
+    children: [
+      {
+        path: 'nuevo', component: CreaeditacontrolComponent
+      },
+      {
+        path: 'ediciones/:id', component: CreaeditacontrolComponent,
+      },
+    ],
+  },
+  {
+    path: 'recetas',
+    component: RecetaComponent,
+    canActivate: [seguridadGuard],
+    children: [
+      {
+        path: 'nuevo', component: CreaeditarecetaComponent
+      },
+      {
+        path: 'ediciones/:id', component: CreaeditarecetaComponent,
+      },
+    ],
+
+  },
+  {
+    path: 'alimentos',
+    component: AlimentosComponent,
+    canActivate: [seguridadGuard],
+    children: [
+      {
+        path: 'nuevo', component: CreaeditaalimentosComponent
+      },
+      {
+        path: 'ediciones/:id', component: CreaeditaalimentosComponent,
+      },
+    ],
+  },
+  {
+    path: 'comidas',
+    component: ComidaComponent,
+    canActivate: [seguridadGuard],
+    children: [
+      {
+        path: 'nuevo', component: CreaeditacomidaComponent
+      },
+      {
+        path: 'ediciones/:id', component: CreaeditacomidaComponent,
+      },
+    ],
+
+  },
+  {
+    path: 'consulta',
+    component: ConsultaComponent,
+    canActivate: [seguridadGuard],
+  },
+  {
+    path: 'respuesta',
+    component: RespuestaComponent,
+    canActivate: [seguridadGuard],
+  },
+  {
+    path: 'objetivos',
+    component: ObjetivosComponent,
+    canActivate: [seguridadGuard],
+    children: [
+      {
+        path: 'nuevo', component: CreaeditaobjetivosComponent
+      },
+      {
+        path: 'ediciones/:id', component: CreaeditaobjetivosComponent,
+      },
+    ],
+  },
+  {
+    path: 'reportes',
+    component: ReportesComponent,
+    canActivate: [seguridadGuard],
+    children: [
+      {
+        path: 'comidafavorita', component: SumacaloriasusuarioComponent,
+      },
+      {
+        path: 'contar-usuarios', component: ContarusuariosactivosinactivosComponent,
+      },
+      {
+        path: 'usuarios-por-rol', component: ContarusuariosporrolComponent,
+      },
+      {
+
+        path: 'tipo-de-comida', component: ContarporcategoriaComponent,
+      },
+      {
+        path: 'obtener-fecha-por-estado', component: ObtenerFechasPorEstadoComponent,
+      },
+      {
+        path: 'duracion-de-fecha-por-tipo', component: ObtenerDuracionPorTipoDeObjetivoComponent,
+      },
+      {
+        path: 'suma-descrip-de-receta-de-comida', component: SumadescripcionderecetaporcomidaComponent,
+      },
+      {
+        path: 'contar-recetas-por-comida', component: ContarrecetaporcomidaComponent,
+      },
+      {
+        path: 'contar-control-por-genero', component: ContarcontrolporgeneroComponent,
+      },
+      {
+        path: 'contar-control-por-dieta', component: ContarcontrolpordietaComponent,
+      },
+      {
+        path: 'contar-alimentos-por-dieta', component: ContaralimentospordietaComponent,
+      },
+      {
+        path: 'sumar-total-calorias-por-dieta', component: SumartotalcaloriasdedietaComponent,
+      },
+      {
+        path: 'quantitydiet', component: CantidaddietaporusuarioComponent,
+      },
+      {
+        path: 'totalduration', component: DuraciondietasporusuarioComponent,
+      },
+      {
+        path: 'activerol', component: RolesactivosComponent,
+      },
+      {
+        path: 'calorias', component: CaloriasporalimentoComponent,
+      },
+      {
+        path: 'carbohidratos', component: CarbohidratosporalimentoComponent,
+      },
+      {
+        path: 'grasas', component: GrasasporalimentoComponent,
+      },
+    ],
+  },
 ];

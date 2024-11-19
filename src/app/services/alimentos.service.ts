@@ -48,7 +48,7 @@ export class AlimentosService {
 
   totalCalorias(): Observable<TotalCaloriasDTO[]> {
     return this.http.get<TotalCaloriasDTO[]>(`${this.url}/total-calorias`);
-
+  }
   caloriasporalimento(): Observable<CaloriasPorAlimentoDTO[]> {
     return this.http.get<CaloriasPorAlimentoDTO[]>(`${this.url}/calorias`);
   }
