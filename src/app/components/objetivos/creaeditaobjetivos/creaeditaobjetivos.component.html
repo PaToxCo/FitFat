@@ -1,0 +1,55 @@
+<div class="container" style="text-align: center; margin: 5%;">
+    <div class="container-title">
+        <p class="title">{{ edicion ? 'Actualizar Objetivo' : 'Registrar Objetivo' }}</p>
+      </div>
+    <div>
+      <form [formGroup]="form" (submit)="insertar()">
+        <mat-form-field class="example-full-width">
+          <mat-label>Descripción</mat-label>
+          <input matInput placeholder="Descripción del objetivo" formControlName="fdescripcion">
+        </mat-form-field>
+        <br />
+        <mat-form-field>
+          <mat-label>Tipo</mat-label>
+          <mat-select formControlName="ftipo">
+            <mat-option *ngFor="let tipo of listaTipoObjetivo" [value]="tipo.value">
+              {{ tipo.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br />
+        <mat-form-field>
+          <mat-label>Selecciona un rango de fechas</mat-label>
+          <mat-date-range-input [formGroup]="getPhFechaGroup()" [rangePicker]="picker">
+            <input matStartDate placeholder="Fecha de inicio" formControlName="fstartdate">
+            <input matEndDate placeholder="Fecha de fin" formControlName="fenddate">
+          </mat-date-range-input>
+          <mat-hint>DD/MM/YYYY – DD/MM/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
+        <br />
+        <mat-form-field>
+          <mat-label>Estado</mat-label>
+          <input matInput placeholder="Estado del objetivo" formControlName="festado">
+        </mat-form-field>
+        <br />
+        <mat-form-field>
+          <mat-label>Usuario</mat-label>
+          <mat-select formControlName="fusuario">
+            <mat-option *ngFor="let usuario of listaUsuario" [value]="usuario.idUsuario">
+              {{ usuario.nombre }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br />
+        <div>
+            <button mat-flat-button color="primary" class="custom-button">
+              {{ edicion ? 'Actualizar' : 'Registrar' }}
+            </button>
+            <button *ngIf="edicion" mat-flat-button color="warn" class="custom-button2" (click)="cancelar()">Cancelar</button>
+          </div>
+      </form>
+    </div>
+  </div>
+  

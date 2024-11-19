@@ -1,0 +1,89 @@
+<div class="container" style="text-align: center; margin-bottom: 1px;">
+  <div class="container-title">
+    <p class="title">{{ edicion ? 'Actualizar Control' : 'Registrar Control' }}</p>
+  </div>
+    <div>
+      <form [formGroup]="form" (ngSubmit)="insertar()">
+        
+        <!-- Campo para el peso -->
+        <mat-form-field>
+          <mat-label>Peso</mat-label>
+          <input matInput placeholder="Ingrese el peso" formControlName="fpeso" />
+        </mat-form-field>
+        <br />
+  
+        <!-- Campo para la talla -->
+        <mat-form-field>
+          <mat-label>Talla</mat-label>
+          <input matInput placeholder="Ingrese la talla" formControlName="ftalla" />
+        </mat-form-field>
+        <br />
+  
+        <!-- Campo para la edad -->
+        <mat-form-field>
+          <mat-label>Edad</mat-label>
+          <input matInput placeholder="Ingrese la edad" formControlName="fedad" />
+        </mat-form-field>
+        <br />
+  
+        <!-- Campo para el género -->
+        <mat-form-field>
+          <mat-label>Género</mat-label>
+          <mat-select formControlName="fgenero">
+            <mat-option value="M">Masculino</mat-option>
+            <mat-option value="F">Femenino</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br />
+  
+        <!-- Campo para la dieta -->
+        <mat-form-field>
+            <mat-label>Dieta</mat-label>
+            <mat-select  formControlName="fdieta">
+              @for (food of listaDieta; track food) {
+              <mat-option [value]="food.idDieta">{{ food.nombre}}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        <br />
+  
+        <!-- Campo para el usuario -->
+        <mat-form-field>
+            <mat-label>Usuario</mat-label>
+            <mat-select  formControlName="fusuario">
+              @for (food of listaUsuarios; track food) {
+              <mat-option [value]="food.idUsuario">{{ food.nombre}}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        <br />
+  
+        <!-- Campo para la fecha (al final) -->
+        <mat-form-field>
+          <mat-label>Fecha</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            placeholder="Seleccione la fecha"
+            formControlName="ffecha"
+          />
+          <mat-hint>DD/MM/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <br />
+  
+        <!-- Botones de acción -->
+        <div>
+          <button mat-flat-button color="primary" class="custom-button">
+            {{ edicion ? 'Actualizar' : 'Registrar' }}
+          </button>
+          <button *ngIf="edicion" mat-flat-button color="warn" class="custom-button2" (click)="cancelar()">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

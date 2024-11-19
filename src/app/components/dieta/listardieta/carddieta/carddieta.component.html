@@ -1,0 +1,13 @@
+<mat-card class="container-card">
+  <mat-card-content class="card">
+    <mat-card-title class="text-title">{{ dieta?.nombre }}</mat-card-title>
+    <mat-card-subtitle class="text-title">Dieta para: {{ dieta?.duracion }}</mat-card-subtitle>  
+    <div class="card-details">
+      <p class="text-body">ID: {{ dieta?.idDieta }}</p>
+      <p class="text-body">Descripción: {{ dieta?.duracion }}</p>
+    </div>
+    <button mat-raised-button [routerLink]="['/dietas/dieta-details', dieta?.idDieta]" class="card-button">
+      View Details
+    </button>
+  </mat-card-content>
+</mat-card>

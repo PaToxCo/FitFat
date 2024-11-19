@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Fitfat</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="assets/img/logofitfat.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+</head>
+
+<body class="mat-typography">
+  <app-root></app-root>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const preloader = document.getElementById("preloader");
+  
+      setTimeout(() => {
+        preloader.style.opacity = 0;
+        preloader.style.visibility = 'hidden';
+        document.querySelectorAll('.animated-button').forEach((button, index) => {
+          setTimeout(() => {
+            button.classList.add('animate');
+          }, 400 + index * 100);
+        });
+      }, 4000);
+    });
+     //BY: FABRICIO PRADO U202219531
+      console.log('%c created by: FABRICIO PRADO U202219531.', 'background: #222; color: #bada55');
+  </script>
+</body>
+
+</html>

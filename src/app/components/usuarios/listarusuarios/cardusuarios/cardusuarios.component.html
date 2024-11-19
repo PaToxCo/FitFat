@@ -1,0 +1,14 @@
+<mat-card class="container-card">
+  <mat-card-content class="card">
+    <mat-card-title class="text-title">{{ usuario?.nombre }}</mat-card-title>
+    <mat-card-subtitle class="text-title">{{ usuario?.apellidos }}</mat-card-subtitle>  
+    <div class="card-details">
+      <p class="text-body">Usuario: {{ usuario?.usuario }}</p>
+      <p class="text-body">Correo: {{ usuario?.correo }}</p>
+      <p class="text-body">Dirección: {{ usuario?.direccion }}</p>
+    </div>
+    <button mat-raised-button [routerLink]="['/usuarios/user-details', usuario?.idUsuario]" class="card-button">
+      View Details
+    </button>
+  </mat-card-content>
+</mat-card>
