@@ -18,7 +18,7 @@ export class LoginService {
   ) {}
 
   login(request: JwtRequest): Observable<any> {
-    return this.http.post('http://localhost:8080/login', request);  
+    return this.http.post('https://fitfat-backend.onrender.com/login', request);  
   }
   
   verificar() {
