@@ -114,16 +114,33 @@ export class CreaeditaobjetivosComponent implements OnInit{
 
       console.log(this.objetivo);
 
-      this.oS.insert(this.objetivo).subscribe((data) => {
-        this.oS.list().subscribe((data) => {
-          this.oS.setList(data);
-          this.router.navigate(['objetivos']);
+      if (this.edicion) {
+        this.oS.update(this.objetivo).subscribe((data) => {
+          this.oS.list().subscribe((data) => {
+            this.oS.setList(data);
+            this.openSnackBar('Objetivo actualizado con éxito', 'Cerrar'); 
+            this.router.navigate(['objetivos']);
+          });
         });
-      });
+      } else {
+        this.oS.insert(this.objetivo).subscribe((data) => {
+          this.oS.list().subscribe((data) => {
+            this.oS.setList(data);
+            this.openSnackBar('Objetivo registrado con éxito', 'Cerrar'); 
+            this.router.navigate(['objetivos']);
+          });
+        });
+      }
     } else {
       if (this.form.get('phfecha')?.hasError('dateRangeInvalid')) {
         this.openSnackBar(
           'La fecha fin no puede ser menor a la fecha inicio, ni el inicio mayor a la de fin.',
+          'Cerrar'
+        );
+      }
+      else{
+        this.openSnackBar(
+          'Por favor verifica que todos los campos estén completos.',
           'Cerrar'
         );
       }

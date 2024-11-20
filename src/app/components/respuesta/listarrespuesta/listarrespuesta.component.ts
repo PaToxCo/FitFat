@@ -6,6 +6,7 @@ import { Respuesta } from '../../../models/respuesta';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatInput, MatInputModule } from '@angular/material/input';
 import { CommonModule } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-listarrespuesta',
@@ -21,12 +22,18 @@ export class ListarrespuestaComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private rS: RespuestaService) { }
+  constructor(private rS: RespuestaService,
+    private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.rS.list().subscribe((data) => {
       console.log(data);
       this.dataSource.data = data;
+      if (data.length == 0) {
+        this.snackBar.open('No hay Respuestas registradas', 'Cerrar', {
+          duration: 5000,
+        });
+      }
     });
   } 
   ngAfterViewInit(): void {

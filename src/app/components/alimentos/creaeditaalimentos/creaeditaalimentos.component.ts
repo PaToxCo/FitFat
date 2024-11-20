@@ -59,16 +59,14 @@ export class CreaeditaalimentosComponent implements OnInit {
       this.edicion = data['id'] != null;
       this.init();
     });
-  
     this.form = this.formBuilder.group({
-      fcodigo: [''],
-      fnombre: ['', Validators.required],
-      fcalorias: [0, Validators.required],
-      fproteinas: [0, Validators.required],
-      fcarbohidratos: [0, Validators.required],
-      fgrasa: [0, Validators.required],
-      fdieta: ['', Validators.required],
-      freceta: ['', Validators.required],
+      fnombre: ['', [Validators.required]],
+      fcalorias: [0, [Validators.required]],
+      fproteinas: [0, [Validators.required]],
+      fcarbohidratos: [0, [Validators.required]],
+      fgrasa: [0, [Validators.required]],
+      fdieta: ['', [Validators.required]],
+      freceta: ['', [Validators.required]],
     });
   
     this.dS.list().subscribe((data) => {
@@ -89,44 +87,34 @@ export class CreaeditaalimentosComponent implements OnInit {
       this.alimentos.grasas = this.form.value.fgrasa;
       this.alimentos.dieta.idDieta = this.form.value.fdieta;
       this.alimentos.receta.idReceta = this.form.value.freceta;
-
-      this.aS.insert(this.alimentos).subscribe(() => {
-        this.aS.list().subscribe((data) => {
-          this.aS.setList(data);
-          this.router.navigate(['alimentos']);
-          this.openSnackBar('Alimento registrado correctamente', 'Cerrar');
+      if (this.edicion) {
+        this.aS.update(this.alimentos).subscribe((data) => {
+          this.aS.list().subscribe((data) => {
+            this.aS.setList(data);
+            this.router.navigate(['alimentos']);
+            this.openSnackBar('Alimento actualizado con éxito', 'Cerrar'); 
+          });
         });
-      });
+      } else {
+        this.aS.insert(this.alimentos).subscribe((data) => {
+          this.aS.list().subscribe((data) => {
+            this.aS.setList(data);
+            this.router.navigate(['alimentos']);
+            this.openSnackBar('Alimento registrado con éxito', 'Cerrar'); 
+          });
+        });
+      }
     } else {
-      if (this.form.controls['fcodigo'].invalid) {
-        this.openSnackBar('Por favor, complete el nombre de la receta.', 'Cerrar');
-      }
-      if (this.form.controls['fnombre'].invalid) {
-        this.openSnackBar('Por favor, complete la descripción de la receta.', 'Cerrar');
-      }
-      if (this.form.controls['fcalorias'].invalid) {
-        this.openSnackBar('Por favor, complete la descripción de la receta.', 'Cerrar');
-      }
-      if (this.form.controls['fproteinas'].invalid) {
-        this.openSnackBar('Por favor, complete las instrucciones de la receta.', 'Cerrar');
-      }
-      if (this.form.controls['fcarbohidratos'].invalid) {
-        this.openSnackBar('Por favor, seleccione una comida.', 'Cerrar');
-      }
-      if (this.form.controls['fgrasa'].invalid) {
-        this.openSnackBar('Por favor, seleccione una comida.', 'Cerrar');
-      }
-      if (this.form.controls['fdieta'].invalid) {
-        this.openSnackBar('Por favor, seleccione una comida.', 'Cerrar');
-      }
-      if (this.form.controls['freceta'].invalid) {
-        this.openSnackBar('Por favor, seleccione una comida.', 'Cerrar');
-      }
+      this.openSnackBar(
+        'Por favor, complete todos los campos requeridos.',
+        'Cerrar'
+      );
     }
   }
+
   init() {
     if (this.edicion) {
-      this.aS.listId(this.id).subscribe((data) => {
+      this.aS.listId(this.id).subscribe((data) => { 
         this.form = new FormGroup({
           fcodigo: new FormControl(data.idAlimentos),
           fnombre: new FormControl(data.nombre),
@@ -134,15 +122,15 @@ export class CreaeditaalimentosComponent implements OnInit {
           fproteinas: new FormControl(data.proteinas || 0),
           fcarbohidratos: new FormControl(data.carbohidratos || 0),
           fgrasa: new FormControl(data.grasas || 0),
-          fdieta: new FormControl(data.dieta),
-          freceta: new FormControl(data.receta),
+          fdieta: new FormControl(data.dieta, Validators.required),
+          freceta: new FormControl(data.receta,Validators.required),
         });
       });
     }
   }
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
-      duration: 5000,
+      duration: 3000,
     });
   }
   cancelar() {

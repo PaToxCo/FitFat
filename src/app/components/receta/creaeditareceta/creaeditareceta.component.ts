@@ -77,13 +77,23 @@ export class CreaeditarecetaComponent implements OnInit {
       this.receta.instrucciones = this.form.value.finstrucciones;
       this.receta.comida.idComida = this.form.value.fcomida;
 
-      this.rS.insert(this.receta).subscribe(() => {
-        this.rS.list().subscribe((data) => {
-          this.rS.setList(data);
-          this.router.navigate(['recetas']);
-          this.openSnackBar('Receta registrada correctamente', 'Cerrar');
+      if (this.edicion) {
+        this.rS.update(this.receta).subscribe((data) => {
+          this.rS.list().subscribe((data) => {
+            this.rS.setList(data);
+            this.openSnackBar('Receta actualizada con éxito', 'Cerrar'); 
+            this.router.navigate(['recetas']);
+          });
         });
-      });
+      } else {
+        this.rS.insert(this.receta).subscribe(() => {
+          this.rS.list().subscribe((data) => {
+            this.rS.setList(data);
+            this.router.navigate(['recetas']);
+            this.openSnackBar('Receta registrada con éxito', 'Cerrar');
+          });
+        });
+      }
     } else {
       if (this.form.controls['fnombre'].invalid) {
         this.openSnackBar('Por favor, complete el nombre de la receta.', 'Cerrar');

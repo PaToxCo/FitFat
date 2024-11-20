@@ -98,7 +98,7 @@ export class AppComponent {
   ngOnInit() {
     this.verificar();
     if (this.isAuthenticated) {
-      this.getUser();  // Cargar el usuario cuando esté autenticado
+      this.getUser();  
     }
   }
 

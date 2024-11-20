@@ -33,7 +33,6 @@ import { CommonModule } from '@angular/common';
 export class CreaeditatipoComidasComponent implements OnInit {
   form: FormGroup = new FormGroup({});
   tipoComida: Tipo_Comida = new Tipo_Comida();
-  //modificar
   id: number = 0;
   edicion: boolean = false;
 
@@ -55,17 +54,14 @@ export class CreaeditatipoComidasComponent implements OnInit {
     private tS: TipoComidaService,
     private router: Router,
     private snackBar: MatSnackBar,
-    //modificar
     private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
-    //modificar
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
       this.edicion = data['id'] != null;
       this.init();
-      //traer data de la tabla al formulario
     });
     this.form = this.formBuilder.group({
       fdescripcion: ['', [Validators.required]],
@@ -86,7 +82,7 @@ export class CreaeditatipoComidasComponent implements OnInit {
           this.tS.list().subscribe((data) => {
             this.tS.setList(data);
             this.router.navigate(['tipos-comida']);
-            this.openSnackBar('Tipo de comida actualizado con éxito.', 'Cerrar');
+            this.openSnackBar('Tipo de comida actualizada con éxito.', 'Cerrar');
           });
         });
       } else {
@@ -94,7 +90,7 @@ export class CreaeditatipoComidasComponent implements OnInit {
           this.tS.list().subscribe((data) => {
             this.tS.setList(data);
             this.router.navigate(['tipos-comida']);
-            this.openSnackBar('Tipo de comida registrado con éxito.', 'Cerrar');
+            this.openSnackBar('Tipo de comida registrada con éxito.', 'Cerrar');
           });
         });
       }

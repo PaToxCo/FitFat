@@ -8,6 +8,7 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatInput, MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-listarcomida',
@@ -23,10 +24,17 @@ export class ListarcomidaComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   displayedColumns: string[] = ['c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c8', 'c9', 'c10', 'accion01', 'accion02'];
-  constructor(private cS: ComidaService) { }
+  constructor(private cS: ComidaService,
+    private snackBar: MatSnackBar) { }
   ngOnInit(): void {
     this.cS.list().subscribe((data) => {
       this.datasource.data = data;
+      this.datasource = new MatTableDataSource(data);
+      if (data.length == 0) {
+        this.snackBar.open('No hay Comidas registradas', 'Cerrar', {
+          duration: 5000,
+        });
+      }
     });
     this.cS.getList().subscribe((data) => {
       this.datasource = new MatTableDataSource(data);
@@ -36,6 +44,10 @@ export class ListarcomidaComponent implements OnInit {
     this.cS.delete(id).subscribe((data) => {
       this.cS.list().subscribe((data) => {
         this.cS.setList(data);
+        this.showDeleteSnackbar();
+        if (data.length == 0) {
+          this.showNoComidasSnackbar();
+        }
       });
     });
   }
@@ -48,5 +60,19 @@ export class ListarcomidaComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.datasource.filter = filterValue.trim().toLowerCase();
+  }
+  showNoComidasSnackbar() {
+    this.snackBar.open('No hay Comidas registradas', 'Cerrar', {
+      duration: 5000,
+      verticalPosition: 'bottom',
+      horizontalPosition: 'center',
+    });
+  }
+  showDeleteSnackbar() {
+    this.snackBar.open('Comida eliminado con éxito', 'Cerrar', {
+      duration: 5000,
+      verticalPosition: 'bottom', 
+      horizontalPosition: 'center',
+    });
   }
 }

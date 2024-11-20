@@ -120,7 +120,7 @@ export class CreaeditacomidaComponent implements OnInit {
           this.cS.list().subscribe((data) => {
             this.cS.setList(data);
             this.router.navigate(['comidas']);
-            this.openSnackBar('Comida actualizado con éxito.', 'Cerrar');
+            this.openSnackBar('Comida actualizada con éxito.', 'Cerrar');
           });
         });
       } else {
@@ -128,7 +128,7 @@ export class CreaeditacomidaComponent implements OnInit {
           this.cS.list().subscribe((data) => {
             this.cS.setList(data);
             this.router.navigate(['comidas']);
-            this.openSnackBar('Comida registrado con éxito.', 'Cerrar');
+            this.openSnackBar('Comida registrada con éxito.', 'Cerrar');
           });
         });
       }

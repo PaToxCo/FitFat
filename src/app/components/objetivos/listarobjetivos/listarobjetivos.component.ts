@@ -7,6 +7,7 @@ import { Objetivos } from '../../../models/objetivos';
 import { ObjetivosService } from '../../../services/objetivos.service';
 import { RouterLink } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-listarobjetivos',
@@ -18,7 +19,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatInputModule,
     MatInput,
     RouterLink,
-    MatIconModule
+    MatIconModule,
   ],
   templateUrl: './listarobjetivos.component.html',
   styleUrl: './listarobjetivos.component.css',
@@ -29,11 +30,27 @@ export class ListarobjetivosComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  displayedColumns: string[] = ['c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'accion01', 'accion02'];
-  constructor(private oS: ObjetivosService) {}
+  displayedColumns: string[] = [
+    'c1',
+    'c2',
+    'c3',
+    'c4',
+    'c5',
+    'c6',
+    'c7',
+    'accion01',
+    'accion02',
+  ];
+  constructor(private oS: ObjetivosService, private snackBar: MatSnackBar) {}
   ngOnInit(): void {
     this.oS.list().subscribe((data) => {
       this.datasource.data = data;
+      this.datasource = new MatTableDataSource(data);
+      if (data.length == 0) {
+        this.snackBar.open('No hay objetivos registrados', 'Cerrar', {
+          duration: 5000,
+        });
+      }
     });
     this.oS.getList().subscribe((data) => {
       this.datasource = new MatTableDataSource(data);
@@ -43,6 +60,10 @@ export class ListarobjetivosComponent {
     this.oS.delete(id).subscribe((data) => {
       this.oS.list().subscribe((data) => {
         this.oS.setList(data);
+        this.showDeleteSnackbar();
+        if (data.length == 0) {
+          this.showNoObjetivosSnackbar();
+        }
       });
     });
   }
@@ -55,5 +76,18 @@ export class ListarobjetivosComponent {
     const filterValue = (event.target as HTMLInputElement).value;
     this.datasource.filter = filterValue.trim().toLowerCase();
   }
- 
+  showNoObjetivosSnackbar() {
+    this.snackBar.open('No hay Objetivos registrados', 'Cerrar', {
+      duration: 5000,
+      verticalPosition: 'bottom',
+      horizontalPosition: 'center',
+    });
+  }
+  showDeleteSnackbar() {
+    this.snackBar.open('Objetivo eliminado con éxito', 'Cerrar', {
+      duration: 5000,
+      verticalPosition: 'bottom',
+      horizontalPosition: 'center',
+    });
+  }
 }

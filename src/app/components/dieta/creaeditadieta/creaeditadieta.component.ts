@@ -80,7 +80,7 @@ export class CreaeditadietaComponent implements OnInit {
         this.dS.list().subscribe((data) => {
           this.dS.setList(data);
           this.router.navigate(['dietas']);
-          const mensaje = this.edicion ? 'Dieta actualizada exitosamente' : 'Dieta registrada exitosamente';
+          const mensaje = this.edicion ? 'Dieta actualizada con éxito' : 'Dieta registrada con éxito';
            this.openSnackBar(mensaje, 'Cerrar');
         });
       });

@@ -96,15 +96,32 @@ export class CreaeditacontrolComponent implements OnInit {
 
       console.log(this.control);
 
-      this.cS.insert(this.control).subscribe((data) => {
-        this.cS.list().subscribe((data) => {
-          this.cS.setList(data);
-          this.router.navigate(['control']);
+      if (this.edicion) {
+        this.cS.update(this.control).subscribe((data) => {
+          this.cS.list().subscribe((data) => {
+            this.cS.setList(data);
+            this.openSnackBar('Control actualizado con éxito', 'Cerrar'); 
+            this.router.navigate(['control']);
+          });
         });
-      });
+      } else {
+        this.cS.insert(this.control).subscribe((data) => {
+          this.cS.list().subscribe((data) => {
+            this.cS.setList(data);
+            this.openSnackBar('Control registrado con éxito', 'Cerrar');
+            this.router.navigate(['control']);
+          });
+        });
+      }
     } else {
       if (this.form.controls['ffecha'].hasError('futureDate')) {
         this.openSnackBar('No se puede seleccionar una fecha futura', 'Cerrar');
+      }
+      else{
+        this.openSnackBar(
+          'Por favor verifica que todos los campos estén completos.',
+          'Cerrar'
+        );
       }
     }
   }

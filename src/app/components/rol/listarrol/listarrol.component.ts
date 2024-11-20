@@ -57,7 +57,7 @@ export class ListarrolComponent implements OnInit {
   showNoRolesSnackbar() {
     this.snackBar.open('No hay roles registrados', 'Cerrar', {
       duration: 10000,
-      verticalPosition: 'bottom', // Posición en la pantalla
+      verticalPosition: 'bottom', 
       horizontalPosition: 'center',
     });
   }

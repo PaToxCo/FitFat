@@ -88,15 +88,15 @@ export class ListardietaComponent {
   showNoDietasSnackbar() {
     this.snackBar.open('No hay dietas registradas', 'Cerrar', {
       duration: 5000,
-      verticalPosition: 'bottom', // Posición en la pantalla
+      verticalPosition: 'bottom', 
       horizontalPosition: 'center',
     });
   }
   showDeleteSnackbar() {
-    this.snackBar.open('Eliminado correctamente', 'Cerrar', {
+    this.snackBar.open('Dieta eliminada con éxito', 'Cerrar', {
       duration: 5000,
-      verticalPosition: 'bottom', // Posición en la pantalla
+      verticalPosition: 'bottom', 
       horizontalPosition: 'center',
-    });
+    }); 
   }
 }
